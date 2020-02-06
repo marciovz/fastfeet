@@ -2,17 +2,20 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import avatarMulterConfig from './config/multer/avatar';
+import signatureMulterConfig from './config/multer/signature';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import RecipientController from './app/controllers/RecipientController';
 import AvatarController from './app/controllers/AvatarController';
 import DeliverymanController from './app/controllers/DeliverymanController';
+import signatureController from './app/controllers/SignatureController';
 
 import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 const uploadAvatar = multer(avatarMulterConfig);
+const uploadSigature = multer(signatureMulterConfig);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
@@ -33,5 +36,10 @@ routes.put('/deliverymans/:id', DeliverymanController.update);
 routes.delete('/deliverymans/:id', DeliverymanController.delete);
 
 routes.post('/avatars', uploadAvatar.single('file'), AvatarController.store);
+routes.post(
+  '/signatures',
+  uploadSigature.single('file'),
+  signatureController.store
+);
 
 export default routes;
