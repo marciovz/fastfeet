@@ -10,6 +10,7 @@ import RecipientController from './app/controllers/RecipientController';
 import AvatarController from './app/controllers/AvatarController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import signatureController from './app/controllers/SignatureController';
+import DeliveryController from './app/controllers/DeliveryController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -34,6 +35,12 @@ routes.get('/deliverymans/:id', DeliverymanController.show);
 routes.post('/deliverymans', DeliverymanController.store);
 routes.put('/deliverymans/:id', DeliverymanController.update);
 routes.delete('/deliverymans/:id', DeliverymanController.delete);
+
+routes.get('/deliveries', DeliveryController.index);
+routes.get('/deliveries/:id', DeliveryController.show);
+routes.post('/deliveries', DeliveryController.store);
+routes.put('/deliveries/:id', DeliveryController.update);
+routes.delete('/deliveries/:id', DeliveryController.delete);
 
 routes.post('/avatars', uploadAvatar.single('file'), AvatarController.store);
 routes.post(
