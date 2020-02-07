@@ -1,42 +1,55 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
 import Deliveryman from '../models/Deliveryman';
+import Avatar from '../models/Avatar';
 
 class DeliverymanController {
   async index(req, res) {
     const { page = 1, limit = 20, findFor = null } = req.query;
 
-    const optionsQuery = findFor
+    const optionsWhere = findFor
       ? {
-          where: {
-            [Op.or]: [
-              {
-                name: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${findFor}%`,
               },
-              {
-                email: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
+            },
+            {
+              email: {
+                [Op.iLike]: `%${findFor}%`,
               },
-            ],
-          },
-          limit,
-          offset: (page - 1) * limit,
+            },
+          ],
         }
-      : {
-          limit,
-          offset: (page - 1) * limit,
-        };
+      : {};
 
-    const deliverymans = await Deliveryman.findAll(optionsQuery);
+    const deliverymans = await Deliveryman.findAll({
+      where: optionsWhere,
+      limit,
+      offset: (page - 1) * limit,
+      attributes: ['id', 'name', 'email', 'created_at', 'updated_at'],
+      include: [
+        {
+          model: Avatar,
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+      ],
+    });
 
     return res.json(deliverymans);
   }
 
   async show(req, res) {
-    const deliveryman = await Deliveryman.findByPk(req.params.id);
+    const deliveryman = await Deliveryman.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'email', 'created_at', 'updated_at'],
+      include: [
+        {
+          model: Avatar,
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+      ],
+    });
 
     if (!deliveryman) {
       return res.status(401).json({ error: 'Deliveryman not found' });

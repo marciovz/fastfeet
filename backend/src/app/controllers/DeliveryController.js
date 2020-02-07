@@ -4,52 +4,96 @@ import { Op } from 'sequelize';
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
+import Signature from '../models/Signature';
+import Avatar from '../models/Avatar';
 
 class DeliveryController {
   async index(req, res) {
     const { page = 1, limit = 20, findFor = null } = req.query;
 
-    const optionsQuery = findFor
+    const optionsWhere = findFor
       ? {
-          where: {
-            [Op.or]: [
-              {
-                id: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
+          [Op.or]: [
+            {
+              id: {
+                [Op.eq]: Number.isInteger(parseInt(findFor, 10))
+                  ? parseInt(findFor, 10)
+                  : null,
               },
-              {
-                recipient_id: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
+            },
+            {
+              product: {
+                [Op.iLike]: `%${findFor}%`,
               },
-              {
-                deliveryman_id: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                product: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-            ],
-          },
-          limit,
-          offset: (page - 1) * limit,
+            },
+          ],
         }
-      : {
-          limit,
-          offset: (page - 1) * limit,
-        };
+      : {};
 
-    const deliveries = await Delivery.findAll(optionsQuery);
+    const deliveries = await Delivery.findAll({
+      where: optionsWhere,
+      limit,
+      offset: (page - 1) * limit,
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'createdAt',
+        'updatedAt',
+      ],
+      include: [
+        {
+          model: Signature,
+        },
+        {
+          model: Recipient,
+        },
+        {
+          model: Deliveryman,
+          attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
+          include: [
+            {
+              model: Avatar,
+            },
+          ],
+        },
+      ],
+    });
 
     return res.json(deliveries);
   }
 
   async show(req, res) {
-    const delivery = await Delivery.findByPk(req.params.id);
+    const delivery = await Delivery.findByPk(req.params.id, {
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'createdAt',
+        'updatedAt',
+      ],
+      include: [
+        {
+          model: Signature,
+        },
+        {
+          model: Recipient,
+        },
+        {
+          model: Deliveryman,
+          attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
+          include: [
+            {
+              model: Avatar,
+            },
+          ],
+        },
+      ],
+    });
 
     if (!delivery) {
       return res.status(401).json({ error: 'Delivery not found!' });

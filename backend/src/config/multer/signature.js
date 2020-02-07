@@ -11,7 +11,7 @@ export default {
       '..',
       'tmp',
       'uploads',
-      'signature'
+      'signatures'
     ),
     filename: (re, file, cb) => {
       crypto.randomBytes(16, (err, res) => {
