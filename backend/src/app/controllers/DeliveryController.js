@@ -7,7 +7,8 @@ import Deliveryman from '../models/Deliveryman';
 import Signature from '../models/Signature';
 import Avatar from '../models/Avatar';
 
-import Mail from '../../lib/Mail';
+import CreateDeliveryMail from '../jobs/CreateDeliveryMail';
+import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
@@ -139,15 +140,9 @@ class DeliveryController {
 
     const delivery = await Delivery.create(req.body);
 
-    await Mail.sendMail({
-      to: `${deliveryman.name} <${deliveryman.email}>`,
-      subject: `Nova entrega cadastrada - ${delivery.id}`,
-      template: 'createdDelivery',
-      context: {
-        deliveryman: deliveryman.name,
-        deliveryId: delivery.id,
-        deliveryProduct: delivery.product,
-      },
+    await Queue.add(CreateDeliveryMail.key, {
+      deliveryman,
+      delivery,
     });
 
     return res.json(delivery);
