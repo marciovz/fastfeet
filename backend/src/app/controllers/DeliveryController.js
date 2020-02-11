@@ -7,6 +7,8 @@ import Deliveryman from '../models/Deliveryman';
 import Signature from '../models/Signature';
 import Avatar from '../models/Avatar';
 
+import Mail from '../../lib/Mail';
+
 class DeliveryController {
   async index(req, res) {
     const { page = 1, limit = 20, findFor = null } = req.query;
@@ -136,6 +138,12 @@ class DeliveryController {
     }
 
     const delivery = await Delivery.create(req.body);
+
+    await Mail.sendMail({
+      to: `${deliveryman.name} <${deliveryman.email}>`,
+      subject: `Nova entrega cadastrada - ${delivery.id}`,
+      text: `Você tem uma nova entrega cadastrada - ${delivery.product}`,
+    });
 
     return res.json(delivery);
   }
