@@ -142,7 +142,12 @@ class DeliveryController {
     await Mail.sendMail({
       to: `${deliveryman.name} <${deliveryman.email}>`,
       subject: `Nova entrega cadastrada - ${delivery.id}`,
-      text: `Você tem uma nova entrega cadastrada - ${delivery.product}`,
+      template: 'createdDelivery',
+      context: {
+        deliveryman: deliveryman.name,
+        deliveryId: delivery.id,
+        deliveryProduct: delivery.product,
+      },
     });
 
     return res.json(delivery);
