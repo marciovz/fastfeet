@@ -11,6 +11,7 @@ import AvatarController from './app/controllers/AvatarController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import signatureController from './app/controllers/SignatureController';
 import DeliveryController from './app/controllers/DeliveryController';
+import GetDeliveriesPendingController from './app/controllers/GetDeliveriesPendingController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -20,6 +21,11 @@ const uploadSigature = multer(signatureMulterConfig);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+
+routes.get(
+  '/deliveryman/:id/deliveries/pending',
+  GetDeliveriesPendingController.index
+);
 
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
