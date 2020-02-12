@@ -8,12 +8,16 @@ class GetDeliveriesPendingController {
       return res.status(401).json({ error: 'Deliveryman not found!' });
     }
 
+    const { page = 1, limit = 20 } = req.query;
+
     const deliveries = await Delivery.findAll({
       where: {
         deliveryman_id: deliveryman.id,
         canceled_at: null,
         end_date: null,
       },
+      limit,
+      offset: (page - 1) * limit,
     });
 
     return res.json(deliveries);
