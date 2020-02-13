@@ -12,6 +12,7 @@ import DeliverymanController from './app/controllers/DeliverymanController';
 import signatureController from './app/controllers/SignatureController';
 import DeliveryController from './app/controllers/DeliveryController';
 import GetDeliveriesPendingController from './app/controllers/GetDeliveriesPendingController';
+import GetDeliveriesFinishedController from './app/controllers/GetDeliveriesFinishedController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -19,6 +20,7 @@ const routes = new Router();
 const uploadAvatar = multer(avatarMulterConfig);
 const uploadSigature = multer(signatureMulterConfig);
 
+/** ROTAS SEM AUTENTICAÇÃO */
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
@@ -26,7 +28,12 @@ routes.get(
   '/deliveryman/:id/deliveries/pending',
   GetDeliveriesPendingController.index
 );
+routes.get(
+  '/deliveryman/:id/deliveries/finished',
+  GetDeliveriesFinishedController.index
+);
 
+/** ROTAS COM AUTENTICAÇÃO */
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
