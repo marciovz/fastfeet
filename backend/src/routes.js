@@ -13,6 +13,7 @@ import signatureController from './app/controllers/SignatureController';
 import DeliveryController from './app/controllers/DeliveryController';
 import GetDeliveriesPendingController from './app/controllers/GetDeliveriesPendingController';
 import GetDeliveriesFinishedController from './app/controllers/GetDeliveriesFinishedController';
+import TakeDeliveryController from './app/controllers/TakeDeliveryController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -31,6 +32,12 @@ routes.get(
 routes.get(
   '/deliveryman/:id/deliveries/finished',
   GetDeliveriesFinishedController.index
+);
+
+/** rota para retirada de encomendas */
+routes.put(
+  '/deliveryman/:id/deliveries/:delivery_id/takeDelivery',
+  TakeDeliveryController.update
 );
 
 /** ROTAS COM AUTENTICAÇÃO */
