@@ -47,11 +47,17 @@ routes.put(
   '/deliveryman/:id/deliveries/:delivery_id/finalizeDelivery',
   FinalizeDeliveryController.update
 );
-
+/** rota para upload de uma imagem de assinatura de entrega */
 routes.post(
   '/signatures',
   uploadSigature.single('file'),
   signatureController.store
+);
+
+/** rota para cadastrar um novo problema de entrega */
+routes.post(
+  '/deliveryman/:id/delivery/:delivery_id/problems',
+  DeliveryProblemController.store
 );
 
 /** ROTAS COM AUTENTICAÇÃO */
