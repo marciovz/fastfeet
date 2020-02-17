@@ -28,6 +28,20 @@ class DeliveryProblemController {
     return res.json(deliveriesProblem);
   }
 
+  async show(req, res) {
+    const { page = 1, limit = 20 } = req.query;
+
+    const deliveriesProblem = await DeliveryProblem.findAll({
+      where: {
+        delivery_id: req.params.id,
+      },
+      limit,
+      offset: (page - 1) * limit,
+    });
+
+    return res.json(deliveriesProblem);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       description: Yup.string().required(),
