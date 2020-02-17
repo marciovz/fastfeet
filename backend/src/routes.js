@@ -14,6 +14,7 @@ import DeliveryController from './app/controllers/DeliveryController';
 import GetDeliveriesPendingController from './app/controllers/GetDeliveriesPendingController';
 import GetDeliveriesFinishedController from './app/controllers/GetDeliveriesFinishedController';
 import TakeDeliveryController from './app/controllers/TakeDeliveryController';
+import FinalizeDeliveryController from './app/controllers/FinalizeDeliveryController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -40,6 +41,18 @@ routes.put(
   TakeDeliveryController.update
 );
 
+/** rota para finalizar uma entrega */
+routes.put(
+  '/deliveryman/:id/deliveries/:delivery_id/finalizeDelivery',
+  FinalizeDeliveryController.update
+);
+
+routes.post(
+  '/signatures',
+  uploadSigature.single('file'),
+  signatureController.store
+);
+
 /** ROTAS COM AUTENTICAÇÃO */
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
@@ -63,10 +76,5 @@ routes.put('/deliveries/:id', DeliveryController.update);
 routes.delete('/deliveries/:id', DeliveryController.delete);
 
 routes.post('/avatars', uploadAvatar.single('file'), AvatarController.store);
-routes.post(
-  '/signatures',
-  uploadSigature.single('file'),
-  signatureController.store
-);
 
 export default routes;
