@@ -12,24 +12,13 @@ import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
-    const { page = 1, limit = 20, findFor = null } = req.query;
+    const { page = 1, limit = 20, q = null } = req.query;
 
-    const optionsWhere = findFor
+    const optionsWhere = q
       ? {
-          [Op.or]: [
-            {
-              id: {
-                [Op.eq]: Number.isInteger(parseInt(findFor, 10))
-                  ? parseInt(findFor, 10)
-                  : null,
-              },
-            },
-            {
-              product: {
-                [Op.iLike]: `%${findFor}%`,
-              },
-            },
-          ],
+          product: {
+            [Op.iLike]: `%${q}%`,
+          },
         }
       : {};
 
