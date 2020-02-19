@@ -5,22 +5,13 @@ import Avatar from '../models/Avatar';
 
 class DeliverymanController {
   async index(req, res) {
-    const { page = 1, limit = 20, findFor = null } = req.query;
+    const { page = 1, limit = 20, q = null } = req.query;
 
-    const optionsWhere = findFor
+    const optionsWhere = q
       ? {
-          [Op.or]: [
-            {
-              name: {
-                [Op.iLike]: `%${findFor}%`,
-              },
-            },
-            {
-              email: {
-                [Op.iLike]: `%${findFor}%`,
-              },
-            },
-          ],
+          name: {
+            [Op.iLike]: `%${q}%`,
+          },
         }
       : {};
 
