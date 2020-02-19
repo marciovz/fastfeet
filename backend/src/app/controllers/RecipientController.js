@@ -4,58 +4,21 @@ import Recipient from '../models/Recipient';
 
 class RecipientController {
   async index(req, res) {
-    const { page = 1, limit = 20, findFor = null } = req.query;
+    const { page = 1, limit = 20, q = null } = req.query;
 
-    const objQuery = findFor
+    const optionsWhere = q
       ? {
-          where: {
-            [Op.or]: [
-              {
-                name: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                street: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                number: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                complement: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                city: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                state: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-              {
-                zip_code: {
-                  [Op.iLike]: `%${findFor}%`,
-                },
-              },
-            ],
+          name: {
+            [Op.iLike]: `%${q}%`,
           },
-          limit,
-          offset: (page - 1) * limit,
         }
-      : {
-          limit,
-          offset: (page - 1) * limit,
-        };
+      : {};
 
-    const recipients = await Recipient.findAll(objQuery);
+    const recipients = await Recipient.findAll({
+      where: optionsWhere,
+      limit,
+      offset: (page - 1) * limit,
+    });
 
     return res.json(recipients);
   }
