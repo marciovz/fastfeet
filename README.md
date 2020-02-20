@@ -10,9 +10,10 @@ A aplicação utiliza as tecnologias NodeJS no back-end, ReactJS no front-end e 
 
 Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e responder todas as requisições da aplicação. Utiliza tecnologia JWT nas autenticações de usuários, banco postgree para armazenamento dos dados de entrega, entregador, destinatários entre outros, e o banco Redis para armazenamento de dados para a fila de envio de emails.
 
-### :information_source:Instalação do projeto em uma máquina local
-> :one:
-> **Criação e inicialização dos bancos de dados**
+### :information_source: Instalação do projeto em uma máquina local
+
+> :one: **Criação e inicialização dos bancos de dados**
+>
 > O projeto fastfeet utiliza o banco de dados Postgree para armazenamento dos dados da aplicação e o Redis para armazenamendo da fila de envio de emails.
 > ```bash
 > # Instalação do Redis com o docker
@@ -28,8 +29,8 @@ Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e
 >docker start fastfeetdb
 >```
 
-> :two:
-> **Download do projeto**
+> :two: **Download do projeto**
+>
 > Clonar a pasta do projeto para sua máquina local e instalar as dependências.
 > ```bash
 > # clonar o repositório
@@ -42,32 +43,34 @@ Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e
 > yarn
 > ```
 
-> :three:  
-> **Arquivos de configuração**
+> :three: **Arquivos de configuração**
+>
 >   Fazer uma copiar do arquivo .env.exemplo  na pasta raiz do back-end e renomeá-lo para .env
 >   No arquivo .env preencher as seguintes variáveis de configuração:
 >   
->   > **Código para criptografia jwt**
->   > APP_SECRET= Qualquer palavra ou sequencia chave
+> ```javascript
+> //Código para criptografia jwt
+> APP_SECRET= Qualquer palavra ou sequencia chave
 >   
-> > **Configuração do banco Postgree**
-> >DB_HOST=localhost
-> >DB_USER=userfastfeetdb
-> >DB_PASS=passfastfeetdb
-> >DB_NAME=fastfeetdb
+> //Configuração do banco Postgree
+> DB_HOST=localhost
+> DB_USER=userfastfeetdb
+> DB_PASS=passfastfeetdb
+> DB_NAME=fastfeetdb
 > 
-> > **Configuração do banco Redis**
->  >REDIS_HOST=127.0.0.1
->  >REDIS_PORT=6379
+> //Configuração do banco Redis
+> REDIS_HOST=127.0.0.1
+> REDIS_PORT=6379
 >   
->   >**Configurações do serviço de email**
->   >MAIL_HOST=smtp.mailtrap.io
->   >MAIL_PORT=2525
->   >MAIL_USER=seu_usuário_de_acesso_no_mailtrap
->   >MAIL_PASS=sua_senha_de_acesso_ao_mailtrap
+> //Configurações do serviço de email
+> MAIL_HOST=smtp.mailtrap.io
+> MAIL_PORT=2525
+> MAIL_USER=seu_usuário_de_acesso_no_mailtrap
+> MAIL_PASS=sua_senha_de_acesso_ao_mailtrap
+> ```
 
-> :four:
-> **Iniciando o servidor back-end**
+> :four: **Iniciando o servidor back-end**
+>
 > Com os bancos de dados já rodando, item 1, iniciar o servidor da aplicação e o servidor de envio de emails.
 > ```bash
 > # Iniciando o servidor da aplicação
