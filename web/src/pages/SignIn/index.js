@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
+
+import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.png';
 
@@ -8,6 +11,8 @@ import { Content } from './styles';
 import Input from '~/components/Form/input';
 
 export default function SignIn() {
+  const dispatch = useDispatch();
+
   const formRef = useRef(null);
 
   async function handleSubmit(data, { reset }) {
@@ -23,9 +28,12 @@ export default function SignIn() {
         abortEarly: false,
       });
 
-      console.tron.log(data);
       formRef.current.setErrors({});
+
       reset();
+
+      const { email, password } = data;
+      dispatch(signInRequest(email, password));
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errorMessages = {};
