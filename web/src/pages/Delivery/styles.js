@@ -36,7 +36,7 @@ export const Line = styled.div`
   background: #fff;
   border-radius: 4px;
 
-  p {
+  > p {
     font-size: 16px;
     color: #666666;
   }

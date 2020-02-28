@@ -5,6 +5,7 @@ import DashboardHeader from '~/components/DashboardHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
+import LabelStatus from '~/components/Tags/LabelStatus';
 
 import {
   Container,
@@ -70,7 +71,7 @@ export default function Delivery() {
               </InitialLetters>
               <p>{delivery.Recipient.city}</p>
               <p>{delivery.Recipient.state}</p>
-              <p>{delivery.status}</p>
+              <LabelStatus status={delivery.status} />
               <p>{delivery.Recipient.actions}</p>
             </Line>
           ))}

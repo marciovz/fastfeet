@@ -22,4 +22,8 @@ export const Container = styled.div.attrs(props => ({
     font-size: 16px;
     font-weight: normal;
   }
+  > p {
+    font-size: 16px;
+    color: #666666;
+  }
 `;
