@@ -30,5 +30,5 @@ InitialLetters.defaultProps = {
 InitialLetters.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.node,
-  listColor: PropTypes.arrayOf,
+  listColor: PropTypes.arrayOf(PropTypes.string),
 };

@@ -5,7 +5,7 @@ function getRandomIntInclusive(min, max) {
 }
 
 const raffleColorFromList = colors => {
-  return colors[getRandomIntInclusive(0, colors.length)];
+  return colors[getRandomIntInclusive(0, colors.length - 1)];
 };
 
 export default raffleColorFromList;
