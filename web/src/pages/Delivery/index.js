@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { MdEdit, MdVisibility, MdDelete } from 'react-icons/md';
+
 import api from '~/services/api';
+import history from '~/services/history';
 
 import DashboardHeader from '~/components/DashboardHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
 import LabelStatus from '~/components/Tags/LabelStatus';
+import MenuActions from '~/components/Submenus/MenuActions';
+import Actions from '~/components/Submenus/MenuActions/Actions';
 
 import {
   Container,
@@ -45,6 +51,18 @@ export default function Delivery() {
     loadDeliveries();
   }, []);
 
+  async function handleDeletedelivery(id) {
+    try {
+      if (!window.confirm('Deseja excluir esta entrega?')) return;
+      await api.delete(`/deliveries/${id}`);
+      const newList = deliveries.filter(item => item.id !== id);
+      setDeliveries(newList);
+      toast.success('Enrega excluída com sucesso!');
+    } catch (err) {
+      toast.error('Não foi possível excluir esta entrega!');
+    }
+  }
+
   return (
     <Container>
       <DashboardHeader title="Gerenciando encomendas">
@@ -72,6 +90,32 @@ export default function Delivery() {
               <p>{delivery.Recipient.city}</p>
               <p>{delivery.Recipient.state}</p>
               <LabelStatus status={delivery.status} />
+              <MenuActions>
+                <Actions
+                  onClick={() => {
+                    history.push(`/delivery/${delivery.id}`);
+                  }}
+                >
+                  <MdVisibility color="#8e5be8" />
+                  Visualizar
+                </Actions>
+                <Actions
+                  onClick={() => {
+                    history.push(`/delivery/${delivery.id}/edit`);
+                  }}
+                >
+                  <MdEdit color="#4d85ee" />
+                  Editar
+                </Actions>
+                <Actions
+                  onClick={() => {
+                    handleDeletedelivery(delivery.id);
+                  }}
+                >
+                  <MdDelete color="#DE3B3B" />
+                  Excluir
+                </Actions>
+              </MenuActions>
               <p>{delivery.Recipient.actions}</p>
             </Line>
           ))}
