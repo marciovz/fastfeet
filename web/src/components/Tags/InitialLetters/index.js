@@ -24,9 +24,10 @@ export default function InitialLetters({ name, children, listColor }) {
 }
 
 InitialLetters.defaultProps = {
-  listColor: ['#fcf4ee', '#f4effc', '#ebfbfa'],
+  listColor: ['#f4effc', '#fcf4ee', '#ebfbfa', '#FFEEF1', '#F4F9EF', '#FCFCEF'],
   children: null,
 };
+
 InitialLetters.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.node,
