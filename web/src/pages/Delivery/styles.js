@@ -10,7 +10,7 @@ export const DashboardContent = styled.div``;
 export const TitleLine = styled.div`
   padding: 0 25px;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
 
   > h1 {
     font-size: 16px;
@@ -30,7 +30,7 @@ export const Line = styled.div`
   padding: 0 25px;
   height: 57px;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
   background: #fff;
