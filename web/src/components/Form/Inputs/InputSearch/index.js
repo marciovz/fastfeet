@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { PropTypes } from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 
 import { Container } from './styles';
 
-export default function InputSearch() {
+function InputSearch({ onChange }) {
   return (
     <Container>
       <MdSearch />
-      <input />
+      <input onChange={onChange} />
     </Container>
   );
 }
+
+InputSearch.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
+export default memo(InputSearch);

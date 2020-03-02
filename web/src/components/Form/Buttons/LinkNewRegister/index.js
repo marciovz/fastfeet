@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Icon } from './styles';
 
-export default function LinkNewRegister({ link }) {
+function LinkNewRegister({ link }) {
   return (
     <Container to={link}>
       <Icon />
@@ -15,3 +15,5 @@ export default function LinkNewRegister({ link }) {
 LinkNewRegister.propTypes = {
   link: PropTypes.string.isRequired,
 };
+
+export default memo(LinkNewRegister);

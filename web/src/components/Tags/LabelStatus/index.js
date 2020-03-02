@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function LabelStatus({ status }) {
+function LabelStatus({ status }) {
   const [colorLabel, setColorLabel] = useState('');
   const [colorBackground, setColorBackground] = useState('');
 
@@ -46,3 +46,5 @@ export default function LabelStatus({ status }) {
 LabelStatus.propTypes = {
   status: PropTypes.string.isRequired,
 };
+
+export default memo(LabelStatus);

@@ -23,11 +23,16 @@ import {
 
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
+  const [productFilter, setProductFilter] = useState('');
 
   useEffect(() => {
     async function loadDeliveries() {
       try {
-        const response = await api.get('deliveries');
+        const response = await api.get('deliveries', {
+          params: {
+            q: productFilter,
+          },
+        });
 
         const data = response.data.map(item => {
           function getStatus(start_date, end_date, canceled) {
@@ -49,7 +54,7 @@ export default function Delivery() {
       }
     }
     loadDeliveries();
-  }, []);
+  }, [productFilter]);
 
   async function handleDeletedelivery(id) {
     try {
@@ -63,16 +68,20 @@ export default function Delivery() {
     }
   }
 
+  function handleSearch(e) {
+    setProductFilter(e.target.value);
+  }
+
   return (
     <Container>
       <DashboardHeader title="Gerenciando encomendas">
-        <InputSearch name="search" />
+        <InputSearch onChange={handleSearch} name="search" />
         <LinkNewRegister link="/delivery/new" />
       </DashboardHeader>
       <DashboardContent>
         <TitleLine>
           <h1>ID</h1>
-          <h1>Destinatário</h1>
+          <h1>Produto</h1>
           <h1>Entregador</h1>
           <h1>Cidade</h1>
           <h1>Estado</h1>
@@ -83,7 +92,7 @@ export default function Delivery() {
           {deliveries.map(delivery => (
             <Line key={delivery.id}>
               <p>{delivery.id}</p>
-              <p>{delivery.Recipient.name}</p>
+              <p>{delivery.product}</p>
               <InitialLetters name={delivery.Deliveryman.name}>
                 <p>{delivery.Deliveryman.name}</p>
               </InitialLetters>
