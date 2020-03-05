@@ -8,7 +8,7 @@ import { signInRequest } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.png';
 
 import { Content } from './styles';
-import Input from '~/components/Form/input';
+import Input from '~/components/Form/Inputs/InputLogin';
 
 export default function SignIn() {
   const dispatch = useDispatch();
