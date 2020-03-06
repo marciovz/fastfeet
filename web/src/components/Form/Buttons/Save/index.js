@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 
 import { Container, Icon } from './styles';
 
-function Save() {
+function Save(props) {
   return (
-    <Container>
+    <Container {...props}>
       <Icon />
       Salvar
     </Container>

@@ -1,11 +1,10 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import { Container, Icon } from './styles';
 
-function GoBack({ page }) {
+function GoBack(props) {
   return (
-    <Container to={`/${page}`}>
+    <Container {...props}>
       <Icon />
       Voltar
     </Container>
@@ -13,7 +12,3 @@ function GoBack({ page }) {
 }
 
 export default memo(GoBack);
-
-GoBack.propTypes = {
-  page: PropTypes.string.isRequired,
-};

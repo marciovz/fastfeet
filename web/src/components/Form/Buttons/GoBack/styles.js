@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { MdChevronLeft } from 'react-icons/md';
 import { darken } from 'polished';
 
-export const Container = styled(Link)`
+export const Container = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
