@@ -15,15 +15,11 @@ export default function Input({ name, label, ...rest }) {
   }, [fieldName, registerField]);
 
   return (
-    <>
-      {label && (
-        <label htmlFor={fieldName}>
-          {label}
-          <input ref={inputRef} defaultValue={defaultValue} {...rest} />
-          {error && <span style={{ color: '#f00' }}>{error}</span>}
-        </label>
-      )}
-    </>
+    <div className="inputContainer">
+      {label && <label htmlFor={fieldName}>{label}</label>}
+      <input ref={inputRef} defaultValue={defaultValue} {...rest} />
+      {error && <span style={{ color: '#f00' }}>{error}</span>}
+    </div>
   );
 }
 
