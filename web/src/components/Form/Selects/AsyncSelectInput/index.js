@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import AsyncSelect from 'react-select/async';
 import { useField } from '@unform/core';
-
-import { Container } from './styles';
 
 export default function AsyncSelectInput({
   name,
@@ -11,44 +9,36 @@ export default function AsyncSelectInput({
   loadOptions,
   ...rest
 }) {
-  const ref = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const selectRef = useRef();
+  const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: ref.current,
+      ref: selectRef.current,
       path: 'state.value',
-      parseValue: selectRef => selectRef.select.state.value,
-      clearValue: selectRef => selectRef.select.clearValue(),
+      getValue: () => value,
     });
-  }, [fieldName, registerField]);
-
-  function handleChange(e) {
-    setValue(e);
-  }
+  }, [value, fieldName, registerField]); // eslint-disable-line
 
   return (
-    <Container>
+    <div className="asyncSelectContainer">
       {label && <label htmlFor={fieldName}>{label}</label>}
       <AsyncSelect
-        name={fieldName}
-        ref={ref}
-        defaultValue
+        id={fieldName}
+        ref={selectRef}
+        defaultValue={defaultValue}
         value={value}
-        loadOptions={loadOptions}
         defaultOptions
-        onChange={handleChange}
+        loadOptions={loadOptions}
+        onChange={val => setValue(val)}
         className="asyncSelectInput"
+        cacheOptions
         {...rest}
       />
       {error && <span>{error}</span>}
-    </Container>
+    </div>
   );
 }
 
