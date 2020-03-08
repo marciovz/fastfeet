@@ -1,28 +1,68 @@
 import React from 'react';
 import { Form } from '@unform/web';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
+
+import Input from '~/components/Form/Inputs/Input';
+import AsyncSelectInput from '~/components/Form/Selects/AsyncSelectInput';
 
 import { Container, Line } from './styles';
 
-import Input from '~/components/Form/Inputs/Input';
+export default function FormDelivery({ onSubmit }) {
+  async function optionsRecipient(inputFilter) {
+    try {
+      return await api
+        .get('recipients', { params: { q: inputFilter } })
+        .then(response => response.data)
+        .then(response =>
+          response.map(recipient => ({
+            value: recipient.id,
+            label: recipient.name,
+          }))
+        );
+    } catch (err) {
+      toast.error('Erro ao buscar dados de encomendas no banco!');
+      return null;
+    }
+  }
 
-export default function FormDelivery() {
+  async function optionsDeliveryman(inputFilter) {
+    try {
+      return await api
+        .get('deliverymans', { params: { q: inputFilter } })
+        .then(response => response.data)
+        .then(response =>
+          response.map(deliveryman => ({
+            value: deliveryman.id,
+            label: deliveryman.name,
+          }))
+        );
+    } catch (err) {
+      toast.error('Erro ao buscar os dados dos entregadores no bando!');
+      return null;
+    }
+  }
+
   return (
     <Container>
-      <Form>
+      <Form id="formDelivery" onSubmit={onSubmit}>
         <Line>
-          <Input
+          <AsyncSelectInput
             name="recipient"
-            type="text"
             label="Destinatário"
-            placeholder="Nome do destinatário"
+            loadOptions={optionsRecipient}
+            placeholder="Selecione um destinatário"
           />
-          <Input
+          <AsyncSelectInput
             name="deliveryman"
-            type="text"
             label="Entregador"
-            placeholder="Nome do entregador"
+            loadOptions={optionsDeliveryman}
+            placeholder="Selecione um entregador"
           />
         </Line>
+
         <Input
           name="product"
           type="text"
@@ -33,3 +73,7 @@ export default function FormDelivery() {
     </Container>
   );
 }
+
+FormDelivery.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
