@@ -93,11 +93,11 @@ export default function Delivery() {
             <Line key={delivery.id}>
               <p>{delivery.id}</p>
               <p>{delivery.product}</p>
-              <InitialLetters name={delivery.Deliveryman.name}>
-                <p>{delivery.Deliveryman.name}</p>
+              <InitialLetters name={delivery.deliveryman.name}>
+                <p>{delivery.deliveryman.name}</p>
               </InitialLetters>
-              <p>{delivery.Recipient.city}</p>
-              <p>{delivery.Recipient.state}</p>
+              <p>{delivery.recipient.city}</p>
+              <p>{delivery.recipient.state}</p>
               <LabelStatus status={delivery.status} />
               <MenuActions>
                 <Actions
@@ -125,7 +125,7 @@ export default function Delivery() {
                   Excluir
                 </Actions>
               </MenuActions>
-              <p>{delivery.Recipient.actions}</p>
+              <p>{delivery.recipient.actions}</p>
             </Line>
           ))}
         </ContentLine>
