@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from '@unform/web';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
@@ -10,16 +10,34 @@ import AsyncSelectInput from '~/components/Form/Selects/AsyncSelectInput';
 
 import { Container, Line } from './styles';
 
-export default function FormDelivery({ onSubmit }) {
+export default function FormDelivery({ dataDelivery, onSubmit }) {
+  const [initialData, setInitialData] = useState(null);
+
+  useEffect(() => {
+    if (dataDelivery) {
+      setInitialData({
+        recipient: {
+          value: dataDelivery.recipient.id,
+          label: dataDelivery.recipient.name,
+        },
+        deliveryman: {
+          value: dataDelivery.deliveryman.id,
+          label: dataDelivery.deliveryman.name,
+        },
+        product: dataDelivery.product,
+      });
+    }
+  }, [dataDelivery]);
+
   async function optionsRecipient(inputFilter) {
     try {
       return await api
         .get('recipients', { params: { q: inputFilter } })
         .then(response => response.data)
         .then(response =>
-          response.map(recipient => ({
-            value: recipient.id,
-            label: recipient.name,
+          response.map(recipientItem => ({
+            value: recipientItem.id,
+            label: recipientItem.name,
           }))
         );
     } catch (err) {
@@ -34,9 +52,9 @@ export default function FormDelivery({ onSubmit }) {
         .get('deliverymans', { params: { q: inputFilter } })
         .then(response => response.data)
         .then(response =>
-          response.map(deliveryman => ({
-            value: deliveryman.id,
-            label: deliveryman.name,
+          response.map(deliverymanItem => ({
+            value: deliverymanItem.id,
+            label: deliverymanItem.name,
           }))
         );
     } catch (err) {
@@ -47,7 +65,7 @@ export default function FormDelivery({ onSubmit }) {
 
   return (
     <Container>
-      <Form id="formDelivery" onSubmit={onSubmit}>
+      <Form id="formDelivery" onSubmit={onSubmit} initialData={initialData}>
         <Line>
           <AsyncSelectInput
             name="recipient"
@@ -68,12 +86,28 @@ export default function FormDelivery({ onSubmit }) {
           type="text"
           label="Produto"
           placeholder="Nome do produto"
+          defautl=""
         />
       </Form>
     </Container>
   );
 }
 
+FormDelivery.defaultProps = {
+  dataDelivery: null,
+};
+
 FormDelivery.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  dataDelivery: PropTypes.shape({
+    recipient: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string,
+    }).isRequired,
+    deliveryman: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string,
+    }).isRequired,
+    product: PropTypes.string.isRequired,
+  }),
 };

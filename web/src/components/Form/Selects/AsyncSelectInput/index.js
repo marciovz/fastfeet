@@ -11,7 +11,7 @@ export default function AsyncSelectInput({
 }) {
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const selectRef = useRef();
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState();
 
   useEffect(() => {
     registerField({
@@ -21,6 +21,12 @@ export default function AsyncSelectInput({
       getValue: () => value,
     });
   }, [value, fieldName, registerField]); // eslint-disable-line
+
+  useEffect(() => {
+    if (defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue]);
 
   return (
     <div className="asyncSelectContainer">
