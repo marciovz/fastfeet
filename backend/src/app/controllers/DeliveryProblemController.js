@@ -21,6 +21,7 @@ class DeliveryProblemController {
           include: [
             {
               model: Deliveryman,
+              as: 'deliveryman',
               attributes: ['id', 'name', 'email'],
             },
           ],
@@ -84,6 +85,7 @@ class DeliveryProblemController {
       include: [
         {
           model: Deliveryman,
+          as: 'deliveryman',
         },
       ],
     });

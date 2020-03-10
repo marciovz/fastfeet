@@ -38,12 +38,15 @@ class DeliveryController {
       include: [
         {
           model: Signature,
+          as: 'signature',
         },
         {
           model: Recipient,
+          as: 'recipient',
         },
         {
           model: Deliveryman,
+          as: 'deliveryman',
           attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
           include: [
             {
@@ -71,12 +74,15 @@ class DeliveryController {
       include: [
         {
           model: Signature,
+          as: 'signature',
         },
         {
           model: Recipient,
+          as: 'recipient',
         },
         {
           model: Deliveryman,
+          as: 'deliveryman',
           attributes: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
           include: [
             {
