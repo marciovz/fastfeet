@@ -23,7 +23,9 @@ export const TitleLine = styled.div`
   }
 `;
 
-export const ContentLine = styled.div``;
+export const ContentLine = styled.div`
+  padding-bottom: 30px;
+`;
 
 export const Line = styled.div`
   margin: 21px 0;

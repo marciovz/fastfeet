@@ -12,6 +12,7 @@ import InitialLetters from '~/components/Tags/InitialLetters';
 import LabelStatus from '~/components/Tags/LabelStatus';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
+import DeliveryModal from '~/components/Modals/DeliveryModal';
 
 import {
   Container,
@@ -24,6 +25,10 @@ import {
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
   const [productFilter, setProductFilter] = useState('');
+  const [deliveryModal, setDeliveryModal] = useState({
+    show: false,
+    delivery: null,
+  });
 
   useEffect(() => {
     async function loadDeliveries() {
@@ -56,7 +61,7 @@ export default function Delivery() {
     loadDeliveries();
   }, [productFilter]);
 
-  async function handleDeletedelivery(id) {
+  async function handleDeleteDelivery(id) {
     try {
       if (!window.confirm('Deseja excluir esta entrega?')) return;
       await api.delete(`/deliveries/${id}`);
@@ -70,6 +75,14 @@ export default function Delivery() {
 
   function handleSearch(e) {
     setProductFilter(e.target.value);
+  }
+
+  function handleShowModal(delivery) {
+    setDeliveryModal({ show: true, delivery });
+  }
+
+  function handleRemoveModal() {
+    setDeliveryModal({ show: false, delivery: null });
   }
 
   return (
@@ -102,7 +115,7 @@ export default function Delivery() {
               <MenuActions>
                 <Actions
                   onClick={() => {
-                    history.push(`/delivery/${delivery.id}`);
+                    handleShowModal(delivery);
                   }}
                 >
                   <MdVisibility color="#8e5be8" />
@@ -118,7 +131,7 @@ export default function Delivery() {
                 </Actions>
                 <Actions
                   onClick={() => {
-                    handleDeletedelivery(delivery.id);
+                    handleDeleteDelivery(delivery.id);
                   }}
                 >
                   <MdDelete color="#DE3B3B" />
@@ -130,6 +143,11 @@ export default function Delivery() {
           ))}
         </ContentLine>
       </DashboardContent>
+      <DeliveryModal
+        show={deliveryModal.show}
+        selectedDelivery={deliveryModal.delivery}
+        onClick={handleRemoveModal}
+      />
     </Container>
   );
 }
