@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
-  height: inhared;
+  height: inherit;
   background: #f5f5f5;
 `;

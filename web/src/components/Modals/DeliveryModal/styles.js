@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
+  z-index: 20;
 
   display: ${props => (props.showModal ? 'flex' : 'none')};
   justify-content: center;

@@ -18,7 +18,6 @@ export default function DeliveryModal({ show, selectedDelivery, onClick }) {
         formatedEndDate: formatDate(selectedDelivery.end_date),
       });
     }
-    console.tron.log(selectedDelivery);
   }, [show, selectedDelivery]);
 
   return (
