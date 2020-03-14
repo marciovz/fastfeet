@@ -63,7 +63,7 @@ export default function Deliveryman() {
         <LinkNewRegister link="/deliveryman/new" />
       </PageListHeader>
       <PageListContent>
-        <TitleList>
+        <TitleList gridList="deliveryman">
           <h1>ID</h1>
           <h1>Foto</h1>
           <h1>Nome</h1>
@@ -72,7 +72,7 @@ export default function Deliveryman() {
         </TitleList>
         <ContentList>
           {deliverymans.map(deliveryman => (
-            <LineList key={deliveryman.id}>
+            <LineList key={deliveryman.id} gridList="deliveryman">
               <p>{deliveryman.id}</p>
               <InitialLetters name={deliveryman.name} />
               <p>{deliveryman.name}</p>

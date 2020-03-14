@@ -5,7 +5,7 @@ import { MdEdit, MdVisibility, MdDelete } from 'react-icons/md';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import DashboardHeader from '~/components/DashboardHeader';
+import PageListHeader from '~/components/Pages/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
@@ -15,12 +15,12 @@ import Actions from '~/components/Submenus/MenuActions/Actions';
 import DeliveryModal from '~/components/Modals/DeliveryModal';
 
 import {
-  Container,
-  DashboardContent,
-  TitleLine,
-  ContentLine,
-  Line,
-} from './styles';
+  PageListContainer,
+  PageListContent,
+  TitleList,
+  ContentList,
+  LineList,
+} from '~/components/Pages/PageList/styles';
 
 export default function Delivery() {
   const [deliveries, setDeliveries] = useState([]);
@@ -86,13 +86,13 @@ export default function Delivery() {
   }
 
   return (
-    <Container>
-      <DashboardHeader title="Gerenciando encomendas">
+    <PageListContainer>
+      <PageListHeader title="Gerenciando encomendas">
         <InputSearch onChange={handleSearch} name="search" />
         <LinkNewRegister link="/delivery/new" />
-      </DashboardHeader>
-      <DashboardContent>
-        <TitleLine>
+      </PageListHeader>
+      <PageListContent>
+        <TitleList gridList="delivery">
           <h1>ID</h1>
           <h1>Produto</h1>
           <h1>Entregador</h1>
@@ -100,10 +100,10 @@ export default function Delivery() {
           <h1>Estado</h1>
           <h1>Status</h1>
           <h1>Ações</h1>
-        </TitleLine>
-        <ContentLine>
+        </TitleList>
+        <ContentList>
           {deliveries.map(delivery => (
-            <Line key={delivery.id}>
+            <LineList key={delivery.id} gridList="delivery">
               <p>{delivery.id}</p>
               <p>{delivery.product}</p>
               <InitialLetters name={delivery.deliveryman.name}>
@@ -138,16 +138,15 @@ export default function Delivery() {
                   Excluir
                 </Actions>
               </MenuActions>
-              <p>{delivery.recipient.actions}</p>
-            </Line>
+            </LineList>
           ))}
-        </ContentLine>
-      </DashboardContent>
+        </ContentList>
+      </PageListContent>
       <DeliveryModal
         show={deliveryModal.show}
         selectedDelivery={deliveryModal.delivery}
         onClick={handleRemoveModal}
       />
-    </Container>
+    </PageListContainer>
   );
 }
