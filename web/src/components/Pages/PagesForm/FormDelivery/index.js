@@ -58,7 +58,7 @@ export default function FormDelivery({ dataDelivery, onSubmit }) {
           }))
         );
     } catch (err) {
-      toast.error('Erro ao buscar os dados dos entregadores no bando!');
+      toast.error('Erro ao buscar os dados dos entregadores no banco!');
       return null;
     }
   }

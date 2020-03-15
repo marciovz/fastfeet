@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import HeaderPagesForm from '~/components/HeaderPagesdForm';
+import HeaderForm from '~/components/Pages/PagesForm/HeaderForm';
 import ButtonGoBack from '~/components/Form/Buttons/GoBack';
 import ButtonSave from '~/components/Form/Buttons/Save';
-import DashboardForm from '~/components/Form/DashboardForm';
-import FormDelivery from '~/components/Form/FormDelivery';
+import ContentForm from '~/components/Pages/PagesForm/ContentForm';
+import FormDelivery from '~/components/Pages/PagesForm/FormDelivery';
 
-import { Container } from './styles';
+import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
 
 export default function Edit() {
   const { id } = useParams();
@@ -48,14 +48,14 @@ export default function Edit() {
   }
 
   return (
-    <Container>
-      <HeaderPagesForm title="Edição de encomendas">
+    <ContainerPagesForm>
+      <HeaderForm title="Edição de encomendas">
         <ButtonGoBack onClick={handleGoBack} />
         <ButtonSave type="submit" form="formDelivery" />
-      </HeaderPagesForm>
-      <DashboardForm>
+      </HeaderForm>
+      <ContentForm>
         <FormDelivery onSubmit={handleSave} dataDelivery={delivery} />
-      </DashboardForm>
-    </Container>
+      </ContentForm>
+    </ContainerPagesForm>
   );
 }

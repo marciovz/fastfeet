@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import HeaderPagesForm from '~/components/HeaderPagesdForm';
+import HeaderForm from '~/components/Pages/PagesForm/HeaderForm';
 import ButtonSave from '~/components/Form/Buttons/Save';
 import ButtonGoBack from '~/components/Form/Buttons/GoBack';
-import DashboardForm from '~/components/Form/DashboardForm';
-import FormDelivery from '~/components/Form/FormDelivery';
+import ContentForm from '~/components/Pages/PagesForm/ContentForm';
+import FormDelivery from '~/components/Pages/PagesForm/FormDelivery';
 
-import { Container } from './styles';
+import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
 
 export default function New() {
   function handleGoBack() {
@@ -32,14 +32,14 @@ export default function New() {
   }
 
   return (
-    <Container>
-      <HeaderPagesForm title="Cadastro de encomendas">
+    <ContainerPagesForm>
+      <HeaderForm title="Cadastro de encomendas">
         <ButtonGoBack onClick={handleGoBack} />
         <ButtonSave type="submit" form="formDelivery" />
-      </HeaderPagesForm>
-      <DashboardForm>
+      </HeaderForm>
+      <ContentForm>
         <FormDelivery onSubmit={handleSave} />
-      </DashboardForm>
-    </Container>
+      </ContentForm>
+    </ContainerPagesForm>
   );
 }
