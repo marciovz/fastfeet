@@ -16,7 +16,7 @@ export default function InitialLetters({ name, children, listColor }) {
   }, [name, listColor]);
 
   return (
-    <Container backgroundColor={raffleColor}>
+    <Container backgroundColor={raffleColor} className="initialLetterContainer">
       <span>{initialLetters}</span>
       {children}
     </Container>

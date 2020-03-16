@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import history from '~/services/history';
@@ -12,17 +13,32 @@ import FormDeliveryman from '~/components/Pages/PagesForm/FormDeliveryman';
 
 import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
 
-export default function New() {
+export default function Edit() {
+  const { id } = useParams();
+  const [deliveryman, setDeliveryman] = useState(null);
+
+  useEffect(() => {
+    async function loadDeliveryman() {
+      try {
+        const { data } = await api.get(`/deliverymans/${id}`);
+        setDeliveryman(data);
+      } catch (err) {
+        toast.error('Entregador não encontrado!');
+      }
+    }
+    loadDeliveryman();
+  }, [id]);
+
   function handleGoBack() {
     history.push('/deliveryman');
   }
 
   async function handleSave({ name, email, avatar_id }) {
     try {
-      await api.post('deliverymans', { name, email, avatar_id });
+      await api.put(`deliverymans/${id}`, { name, email, avatar_id });
       history.push('/deliveryman');
     } catch (err) {
-      toast.error('Não foi possível cadastrar o entregador!');
+      toast.error('Não foi possível editar o entregador!');
     }
   }
 
@@ -33,7 +49,7 @@ export default function New() {
         <ButtonSave type="submit" form="formDeliveryman" />
       </HeaderForm>
       <ContentForm>
-        <FormDeliveryman onSubmit={handleSave} />
+        <FormDeliveryman onSubmit={handleSave} dataDeliveryman={deliveryman} />
       </ContentForm>
     </ContainerPagesForm>
   );
