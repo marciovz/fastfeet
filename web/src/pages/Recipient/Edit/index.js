@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import history from '~/services/history';
@@ -12,7 +13,22 @@ import FormRecipient from '~/components/Pages/PagesForm/FormRecipient';
 
 import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
 
-export default function New() {
+export default function Edit() {
+  const { id } = useParams();
+  const [recipient, setRecipient] = useState(null);
+
+  useEffect(() => {
+    async function loadRecipients() {
+      try {
+        const { data } = await api.get(`/recipients/${id}`);
+        setRecipient(data);
+      } catch (err) {
+        toast.error('Não foi possível editar o destinatário');
+      }
+    }
+    loadRecipients();
+  }, [id]);
+
   function handleGoBack() {
     history.push('/recipient');
   }
@@ -27,7 +43,7 @@ export default function New() {
     zip_code,
   }) {
     try {
-      await api.post('recipients', {
+      await api.put(`/recipients/${id}`, {
         name,
         street,
         number,
@@ -38,18 +54,18 @@ export default function New() {
       });
       history.push('/recipient');
     } catch (err) {
-      toast.error('Não foi possível cadastrar o destinatário!');
+      toast.error('Não foi possível editar o destinatário!');
     }
   }
 
   return (
     <ContainerPagesForm>
-      <HeaderForm title="Cadastro de destinatários">
+      <HeaderForm title="Edição de destinatário">
         <ButtonGoBack onClick={handleGoBack} />
         <ButtonSave type="submit" form="formRecipient" />
       </HeaderForm>
       <ContentForm>
-        <FormRecipient onSubmit={handleSave} />
+        <FormRecipient onSubmit={handleSave} dataRecipient={recipient} />
       </ContentForm>
     </ContainerPagesForm>
   );

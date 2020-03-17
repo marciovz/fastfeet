@@ -31,3 +31,7 @@ const stateList = [
 export function getAllState() {
   return stateList;
 }
+
+export function getStateByAcronym(acronym) {
+  return stateList.find(item => item.acronym === acronym);
+}

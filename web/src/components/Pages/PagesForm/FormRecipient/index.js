@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Input from '~/components/Form/Inputs/Input';
 import AsyncSelectInput from '~/components/Form/Selects/AsyncSelectInput';
-import { getAllState } from '~/util/brazilianStates';
+import { getAllState, getStateByAcronym } from '~/util/brazilianStates';
 
 import { FormContainer, Line } from './styles';
 
@@ -12,13 +12,18 @@ export default function FormRecipient({ onSubmit, dataRecipient }) {
 
   useEffect(() => {
     if (dataRecipient) {
+      const stateReturned = getStateByAcronym(dataRecipient.state);
+
       setInitialData({
         name: dataRecipient.name,
         street: dataRecipient.street,
         number: dataRecipient.number,
         complement: dataRecipient.complement,
         city: dataRecipient.city,
-        state: dataRecipient.state,
+        state: {
+          value: stateReturned.acronym,
+          label: stateReturned.state,
+        },
         zip_code: dataRecipient.zip_code,
       });
     }
