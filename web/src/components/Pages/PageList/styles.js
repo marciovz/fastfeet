@@ -6,6 +6,8 @@ function defineGrid(nameList = 'default') {
       return '1fr 2fr 3fr 2fr 1fr 1fr 1fr';
     case 'deliveryman':
       return '1fr 1fr 2fr 2fr 1fr';
+    case 'recipient':
+      return '1fr 2fr 3fr 1fr';
     default:
       return '1fr 1fr 1fr 1fr 1fr';
   }
