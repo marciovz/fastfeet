@@ -55,7 +55,7 @@ export default function Deliveryman() {
 
   return (
     <PageListContainer>
-      <PageListHeader title="Gerenciando encomendas">
+      <PageListHeader title="Gerenciando entregadores">
         <InputSearch
           onChange={e => setDeliverymanFilter(e.target.value)}
           name="search"

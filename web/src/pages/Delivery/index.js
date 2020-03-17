@@ -67,7 +67,7 @@ export default function Delivery() {
       await api.delete(`/deliveries/${id}`);
       const newList = deliveries.filter(item => item.id !== id);
       setDeliveries(newList);
-      toast.success('Enrega excluída com sucesso!');
+      toast.success('Entrega excluída com sucesso!');
     } catch (err) {
       toast.error('Não foi possível excluir esta entrega!');
     }
