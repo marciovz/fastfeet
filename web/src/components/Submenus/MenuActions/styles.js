@@ -27,7 +27,8 @@ export const Submenu = styled.div`
   top: 30px;
   right: -50px;
   padding: 10px;
-  width: 150px;
+  min-width: 150px;
+  width: max-content;
   display: ${props => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
   background: #ffffff;
