@@ -40,6 +40,5 @@ export const Container = styled.div`
       font-weight: normal;
       color: #666666;
     }
-
-
+  }
 `;
