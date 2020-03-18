@@ -16,6 +16,7 @@ import GetDeliveriesFinishedController from './app/controllers/GetDeliveriesFini
 import TakeDeliveryController from './app/controllers/TakeDeliveryController';
 import FinalizeDeliveryController from './app/controllers/FinalizeDeliveryController';
 import DeliveryProblemController from './app/controllers/DeliveryProblemController';
+import DeliveryProblemPendentController from './app/controllers/GetDeliveryProblemPendentController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -79,6 +80,10 @@ routes.delete('/deliverymans/:id', DeliverymanController.delete);
 routes.get('/deliveries/problem', DeliveryProblemController.index);
 routes.get('/deliveries/:id/problem', DeliveryProblemController.show);
 routes.put('/deliveries/:id/problem/cancel', DeliveryProblemController.update);
+routes.get(
+  '/deliveries/problem/pendent',
+  DeliveryProblemPendentController.index
+);
 
 routes.get('/deliveries', DeliveryController.index);
 routes.get('/deliveries/:id', DeliveryController.show);
