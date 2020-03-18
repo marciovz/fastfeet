@@ -9,7 +9,7 @@ const itens = [
   },
   {
     page: 'recipient',
-    title: 'Entregas',
+    title: 'Destinatários',
   },
   {
     page: 'problem',
