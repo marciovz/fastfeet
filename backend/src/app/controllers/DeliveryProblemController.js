@@ -18,6 +18,7 @@ class DeliveryProblemController {
       include: [
         {
           model: Delivery,
+          as: 'delivery',
           include: [
             {
               model: Deliveryman,
