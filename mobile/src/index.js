@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import './config/ReactotronConfig';
+import '~/config/ReactotronConfig';
 
 const styles = StyleSheet.create({
   container: {
