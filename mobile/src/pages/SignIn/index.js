@@ -1,15 +1,23 @@
-import React, {useRef} from 'react';
-
+import React, {useState, useRef} from 'react';
 import {Image} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import logo from '~/assets/logo.png';
+
+import {signInRequest} from '~/store/modules/auth/actions';
 
 import {Container, Form, FormInput, SubmitButton} from './styles';
 
 export default function SignIn() {
+  const dispatch = useDispatch();
   const deliverymanRef = useRef();
 
-  function handleSubmit() {}
+  const [idDeliveryman, setIdDeliveryman] = useState('');
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleSubmit() {
+    dispatch(signInRequest(idDeliveryman));
+  }
 
   return (
     <Container>
@@ -22,9 +30,13 @@ export default function SignIn() {
           ref={deliverymanRef}
           returnKeyType="send"
           onSubmitEditing={handleSubmit}
+          value={idDeliveryman}
+          onChangeText={setIdDeliveryman}
         />
 
-        <SubmitButton onPress={handleSubmit}>Entrar no sistema</SubmitButton>
+        <SubmitButton loading={loading} onPress={handleSubmit}>
+          Entrar no sistema
+        </SubmitButton>
       </Form>
     </Container>
   );
