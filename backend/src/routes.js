@@ -6,6 +6,7 @@ import signatureMulterConfig from './config/multer/signature';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
+import SessionDeliverymanController from './app/controllers/SessionDeliverymanController';
 import RecipientController from './app/controllers/RecipientController';
 import AvatarController from './app/controllers/AvatarController';
 import DeliverymanController from './app/controllers/DeliverymanController';
@@ -25,8 +26,8 @@ const uploadAvatar = multer(avatarMulterConfig);
 const uploadSigature = multer(signatureMulterConfig);
 
 /** ROTAS SEM AUTENTICAÇÃO */
-routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+routes.post('/sessionsDeliveryman', SessionDeliverymanController.store);
 
 routes.get(
   '/deliveryman/:id/deliveries/pending',
@@ -63,6 +64,7 @@ routes.post(
 
 /** ROTAS COM AUTENTICAÇÃO */
 routes.use(authMiddleware);
+routes.post('/users', UserController.store);
 routes.put('/users', UserController.update);
 
 routes.get('/recipients', RecipientController.index);
