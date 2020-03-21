@@ -4,17 +4,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // import { Container } from './styles';
 
-export default function Dashboard() {
+export default function Profile() {
   return (
     <View>
-      <Text>Dashboard</Text>
+      <Text>Profile</Text>
     </View>
   );
 }
 
-Dashboard.navigationOptions = {
-  tabBarLabel: 'Entregas',
+Profile.navigationOptions = {
+  tabBarLabel: 'Meu perfil',
   tabBarIcon: ({tintColor}) => (
-    <Icon name="reorder" size={20} color={tintColor} />
+    <Icon name="account-circle" size={20} color={tintColor} />
   ),
 };

@@ -33,12 +33,4 @@ export function* signIn({payload}) {
   }
 }
 
-export function setProfile({payload}) {
-  console.tron.log('payload - Rehydrate');
-  console.tron.log(payload);
-}
-
-export default all([
-  takeLatest('persist/REHYDRATE', setProfile),
-  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
-]);
+export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
