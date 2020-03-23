@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 
+import Avatar from '~/components/Avatar';
 import Button from '~/components/Button';
 
 export const Container = styled.View`
@@ -7,12 +8,8 @@ export const Container = styled.View`
   padding: 30px;
 `;
 
-export const AvatarProfilexx = styled.Image`
-  margin: 10px 0 25px;
-  width: 130px;
-  height: 130px;
-  border-radius: 65px;
-  align-self: center;
+export const AvatarProfile = styled(Avatar)`
+  margin: 20px 0;
 `;
 
 export const TextTitle = styled.Text`

@@ -22,9 +22,9 @@ export default function Avatar({size, dataProfile, ...rest}) {
     <Container>
       {profile ? (
         avatar && avatar.url ? (
-          <InitialLetters name={profile.name} size={size} />
-        ) : (
           <Image size={size} {...rest} source={{uri: avatar.url}} />
+        ) : (
+          <InitialLetters name={profile.name} size={size} />
         )
       ) : (
         <IconAvatar name="account-circle" size={size} color="#dddddd" />

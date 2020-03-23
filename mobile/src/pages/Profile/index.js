@@ -6,8 +6,13 @@ import {StatusBar} from 'react-native';
 
 import {signOut} from '~/store/modules/auth/actions';
 
-import AvatarProfile from '~/components/Avatar';
-import {Container, TextTitle, TextContent, LogoutButton} from './styles';
+import {
+  Container,
+  AvatarProfile,
+  TextTitle,
+  TextContent,
+  LogoutButton,
+} from './styles';
 
 export default function Profile() {
   const dispatch = useDispatch();

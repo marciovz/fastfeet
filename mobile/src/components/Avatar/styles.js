@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const Container = styled.View`
-  margin: 20px 0;
   align-items: center;
 `;
 
