@@ -13,7 +13,6 @@ class SessionDeliverymanController {
       return res.status(400).json({ error: 'Validation fails' });
     }
     const deliveryman = await Deliveryman.findByPk(req.body.id, {
-      attributes: ['id', 'name', 'email'],
       include: [
         {
           model: Avatar,
