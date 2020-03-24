@@ -25,7 +25,11 @@ export const TextContent = styled.Text`
   color: #444444;
 `;
 
-export const LogoutButton = styled(Button)`
+export const LogoutButton = styled(Button).attrs({
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#ffffff',
+})`
   margin-top: 30px;
   background: #e74040;
 `;

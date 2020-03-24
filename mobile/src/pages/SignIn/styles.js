@@ -24,6 +24,10 @@ export const FormInput = styled(Input)`
   margin-bottom: 10px;
 `;
 
-export const SubmitButton = styled(Button)`
+export const SubmitButton = styled(Button).attrs({
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#ffffff',
+})`
   margin-top: 5px;
 `;
