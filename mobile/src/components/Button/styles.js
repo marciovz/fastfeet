@@ -14,5 +14,5 @@ export const Container = styled(BaseButton)`
 export const Text = styled.Text`
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: ${props => (props.color ? props.color : '#fff')};
 `;
