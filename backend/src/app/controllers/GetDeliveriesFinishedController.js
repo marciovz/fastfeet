@@ -1,6 +1,7 @@
 import { Op } from 'sequelize';
 
 import Delivery from '../models/Delivery';
+import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 
 class GetDeliveriesFinishedController {
@@ -22,6 +23,12 @@ class GetDeliveriesFinishedController {
       },
       limit,
       offset: (page - 1) * limit,
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+        },
+      ],
     });
 
     return res.json(deliveries);
