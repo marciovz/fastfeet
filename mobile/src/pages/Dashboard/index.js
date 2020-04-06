@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import PropTypes from 'prop-types';
 import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -27,7 +28,7 @@ import {
   TextEmpty,
 } from './styles';
 
-export default function Dashboard() {
+export default function Dashboard({navigation}) {
   const [deliveries, setDeliveries] = useState([]);
   const profile = useSelector(state => state.user.profile);
   const dispatch = useDispatch();
@@ -84,9 +85,13 @@ export default function Dashboard() {
         {deliveries.length > 0 ? (
           <ListDelivery
             data={deliveries}
-            keyExtractor={delivery => delivery.id}
+            keyExtractor={delivery => String(delivery.id)}
             renderItem={({item}) => (
-              <ItemsListDelivery key={item.id} dataDelivery={item} />
+              <ItemsListDelivery
+                key={item.id}
+                dataDelivery={item}
+                navigation={navigation}
+              />
             )}
           />
         ) : (
@@ -100,8 +105,15 @@ export default function Dashboard() {
 }
 
 Dashboard.navigationOptions = {
+  headerShown: false,
   tabBarLabel: 'Entregas',
   tabBarIcon: ({tintColor}) => (
     <Icon name="reorder" size={20} color={tintColor} />
   ),
+};
+
+Dashboard.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };

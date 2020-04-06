@@ -7,7 +7,7 @@ import Content from './Content';
 
 import {Container} from './styles';
 
-export default function ItenListDelivery({dataDelivery}) {
+export default function ItenListDelivery({dataDelivery, navigation}) {
   const [delivery, setDelivery] = useState(null);
 
   useEffect(() => {
@@ -25,10 +25,13 @@ export default function ItenListDelivery({dataDelivery}) {
       <Header productName={(delivery && delivery.product) || null} />
       <StatusBarDelivery dataDelivery={delivery} />
       <Content
-        dataCreatedAt={(delivery && delivery.createdAt) || null}
-        dataCity={
+        navigation={navigation}
+        dataDelivery={delivery}
+        /* dataDeliveryId={delivery && delivery.id} */
+        /* dataCreatedAt={(delivery && delivery.createdAt) || null} */
+        /* dataCity={
           (delivery && delivery.recipient && delivery.recipient.city) || null
-        }
+        } */
       />
     </Container>
   );
@@ -36,6 +39,9 @@ export default function ItenListDelivery({dataDelivery}) {
 
 ItenListDelivery.propTypes = {
   dataDelivery: PropTypes.shape(),
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 ItenListDelivery.defaultProps = {

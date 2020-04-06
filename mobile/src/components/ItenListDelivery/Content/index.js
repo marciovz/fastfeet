@@ -4,9 +4,21 @@ import PropTypes from 'prop-types';
 
 import {Container, Column, Title, Text, ButtonLink} from './styles';
 
-export default function Content({dataCreatedAt, dataCity}) {
+export default function Content({
+  dataDelivery,
+  navigation,
+}) {
+  const [delivery, setDelivery] = useState({});
   const [dateCreated, setDateCreated] = useState('');
   const [city, setCity] = useState('');
+
+  useEffect(() => {
+    if (dataDelivery) {
+      setDelivery(dataDelivery);
+      setDateCreated(dataDelivery.createdAt);
+      setCity(dataDelivery.recipient.city);
+    }
+  }, [dataDelivery]);
 
   const dateCreatedFormated = useMemo(() => {
     try {
@@ -16,10 +28,12 @@ export default function Content({dataCreatedAt, dataCity}) {
     }
   }, [dateCreated]);
 
-  useEffect(() => {
-    if (dataCreatedAt) setDateCreated(dataCreatedAt);
-    if (dataCity) setCity(dataCity);
-  }, [dataCreatedAt, dataCity]);
+
+  function handleLinkDetail() {
+    navigation.navigate('Detail', {
+      delivery,
+    });
+  }
 
   return (
     <Container>
@@ -32,7 +46,7 @@ export default function Content({dataCreatedAt, dataCity}) {
         <Text>{city}</Text>
       </Column>
       <Column>
-        <ButtonLink>Ver detalhes</ButtonLink>
+        <ButtonLink onPress={handleLinkDetail}>Ver detalhes</ButtonLink>
       </Column>
     </Container>
   );
@@ -41,9 +55,14 @@ export default function Content({dataCreatedAt, dataCity}) {
 Content.propTypes = {
   dataCity: PropTypes.string,
   dataCreatedAt: PropTypes.string,
+  dataDeliveryId: PropTypes.number,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
 };
 
 Content.defaultProps = {
   dataCity: '',
   dataCreatedAt: '',
+  dataDeliveryId: null,
 };

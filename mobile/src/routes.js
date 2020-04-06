@@ -1,9 +1,13 @@
+import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import SignIn from '~/pages/SignIn';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
+import Detail from '~/pages/Detail';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -14,7 +18,19 @@ export default (signedIn = false) =>
         }),
         App: createBottomTabNavigator(
           {
-            Dashboard,
+            Delivery: {
+              screen: createStackNavigator({
+                Dashboard,
+                Detail,
+              }),
+              navigationOptions: {
+                tabBarLabel: 'Entregas',
+                tabBarIcon: ({tintColor}) => (
+                  <Icon name="reorder" size={20} color={tintColor} />
+                ),
+              }
+            },
+            
             Profile,
           },
           {
