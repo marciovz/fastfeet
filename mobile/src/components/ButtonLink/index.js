@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Container, LinkIcon, LinkText} from './styles';
+import {Container, LinkIcon, LinkText, Filter} from './styles';
 
-export default function ButtonLink({ children, icon, text, ...rest}) {
+export default function ButtonLink({ children, icon, text, active, handlePress, ...rest}) {
+
+  function handleOnPress() {
+    if(active) {
+      handlePress();
+    }
+  }
   return (
-    <Container {...rest}>
+    <Container {...rest} onPress={handleOnPress}>
       {icon && (
         <LinkIcon name={icon.name} size={icon.size} color={icon.color} />
       )}      
@@ -18,6 +24,7 @@ export default function ButtonLink({ children, icon, text, ...rest}) {
           }
         }
       >{children}</LinkText>
+      <Filter active={active}/>
     </Container>
   );
 }
@@ -29,8 +36,19 @@ ButtonLink.propTypes = {
     size: PropTypes.number,
     color: PropTypes.string,
   }),
+  text: PropTypes.shape({
+    width: PropTypes.number,
+    fontSize: PropTypes.number,
+    fontWeight: PropTypes.string,
+    color: PropTypes.string,
+  }),
+  active: PropTypes.bool,
+  handlePress: PropTypes.func,
 };
 
 ButtonLink.defaultProps = {
   icon: null,
+  text: '',
+  active: true,
+  handlePress: () => [],
 }

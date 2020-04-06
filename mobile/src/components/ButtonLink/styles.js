@@ -16,3 +16,11 @@ export const LinkText = styled.Text`
   color: ${props => props.color ? props.color : '#000000'};  
   text-align: center;
 `;
+
+export const Filter = styled.View`
+  position: absolute;
+  background: #ffffff;
+  opacity: ${props => props.active === false ? 0.8 : 0 };
+  width: 100%;
+  height: 100%;
+`;
