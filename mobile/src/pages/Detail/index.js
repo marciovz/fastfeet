@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useMemo, useCallback} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
+import {useSelector} from 'react-redux';
 import {StatusBar} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
@@ -29,11 +30,12 @@ export default function Detail({navigation}) {
   const [status, setStatus] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [canceledDate, setCanceledDate] = useState(null)
+  const [canceledDate, setCanceledDate] = useState(null);
+  const delivery = useSelector(state => state.currentDelivery.delivery);
+
+  
 
   useEffect(() => {
-    const delivery = navigation.getParam('delivery')
-    
     if(delivery) {
       const address = 
         `${delivery.recipient.street}, ${delivery.recipient.number}, ${delivery.recipient.city} - ${delivery.recipient.state}, ${delivery.recipient.zip_code}`;
@@ -44,7 +46,7 @@ export default function Detail({navigation}) {
       setEndDate(delivery.end_date);
       setCanceledDate(delivery.canceled_at);
     }      
-  }, []);
+  }, [delivery]);
 
   const startDateFormated = useMemo(() => {
     return formatDate(startDate)
@@ -63,15 +65,15 @@ export default function Detail({navigation}) {
   }, [status]);
 
   function handleReportProblem() {
-    navigation.navigate('ReportProblem', { delivery });
+    navigation.navigate('ReportProblem');
   }
 
   function handleViewProblem() {
-    navigation.navigate('ViewProblem', { delivery });
+    navigation.navigate('ViewProblem');
   }
 
-  function handleFinalizeDelivery( delivery ) {
-    navigation.navigate('FinalizeDelivery', { delivery });
+  function handleFinalizeDelivery() {
+    navigation.navigate('FinalizeDelivery');
   }
   
   return (
@@ -122,7 +124,7 @@ export default function Detail({navigation}) {
 
       <ButtonContainer>
         <LinkButton 
-          onPress={handleReportProblem} 
+          handlePress={handleReportProblem} 
           icon={{name: 'highlight-off', size: 24, color: '#E74040'}}
         >
           Informar Problema

@@ -1,16 +1,18 @@
 import React, {useState, useEffect, useMemo} from 'react';
+import {useDispatch} from 'react-redux';
 import {format, parseISO} from 'date-fns';
 import PropTypes from 'prop-types';
 
+import {saveCurrentDeliveryRequest} from '~/store/modules/CurrentDelivery/action';
+
 import {Container, Column, Title, Text, ButtonLink} from './styles';
 
-export default function Content({
-  dataDelivery,
-  navigation,
-}) {
+export default function Content({dataDelivery, navigation}) { 
   const [delivery, setDelivery] = useState({});
   const [dateCreated, setDateCreated] = useState('');
   const [city, setCity] = useState('');
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (dataDelivery) {
@@ -30,9 +32,8 @@ export default function Content({
 
 
   function handleLinkDetail() {
-    navigation.navigate('Detail', {
-      delivery,
-    });
+    dispatch(saveCurrentDeliveryRequest(delivery));
+    navigation.navigate('Detail');
   }
 
   return (
@@ -55,7 +56,7 @@ export default function Content({
 Content.propTypes = {
   dataCity: PropTypes.string,
   dataCreatedAt: PropTypes.string,
-  dataDeliveryId: PropTypes.number,
+  dataDelivery: PropTypes.object,
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
@@ -64,5 +65,5 @@ Content.propTypes = {
 Content.defaultProps = {
   dataCity: '',
   dataCreatedAt: '',
-  dataDeliveryId: null,
+  dataDelivery: null,
 };

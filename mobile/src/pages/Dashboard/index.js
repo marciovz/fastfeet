@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, use} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {signOut} from '~/store/modules/auth/actions';
+import {resetCurrentDeliveryRequest} from '~/store/modules/CurrentDelivery/action';
 
 import Avatar from '~/components/Avatar';
 import ItemsListDelivery from '~/components/ItenListDelivery';
@@ -35,6 +36,10 @@ export default function Dashboard({navigation}) {
 
   const [filterActive, setFilterActive] = useState('pending');
 
+  useEffect(() => {
+    dispatch(resetCurrentDeliveryRequest());
+  }, []);
+  
   useEffect(() => {
     async function loadDeliveries() {
       if (profile && profile.id) {

@@ -27,11 +27,6 @@ export default function ItenListDelivery({dataDelivery, navigation}) {
       <Content
         navigation={navigation}
         dataDelivery={delivery}
-        /* dataDeliveryId={delivery && delivery.id} */
-        /* dataCreatedAt={(delivery && delivery.createdAt) || null} */
-        /* dataCity={
-          (delivery && delivery.recipient && delivery.recipient.city) || null
-        } */
       />
     </Container>
   );
