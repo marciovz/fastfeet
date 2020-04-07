@@ -29,10 +29,12 @@ const uploadSigature = multer(signatureMulterConfig);
 routes.post('/sessions', SessionController.store);
 routes.post('/sessionsDeliveryman', SessionDeliverymanController.store);
 
+/** ROTAS PARA LISTAGEM DE ENTREGAS PENDENTES DE UM ENTREGADOR */
 routes.get(
   '/deliveryman/:id/deliveries/pending',
   GetDeliveriesPendingController.index
 );
+/** ROTAS PARA LISTAGEM DE ENTREGAS FINALIZADAS DE UM ENTREGADOR */
 routes.get(
   '/deliveryman/:id/deliveries/finished',
   GetDeliveriesFinishedController.index
@@ -40,13 +42,13 @@ routes.get(
 
 /** rota para retirada de encomendas */
 routes.put(
-  '/deliveryman/:id/deliveries/:delivery_id/takeDelivery',
+  '/deliveryman/:id/delivery/:delivery_id/takeDelivery',
   TakeDeliveryController.update
 );
 
 /** rota para finalizar uma entrega */
 routes.put(
-  '/deliveryman/:id/deliveries/:delivery_id/finalizeDelivery',
+  '/deliveryman/:id/delivery/:delivery_id/finalizeDelivery',
   FinalizeDeliveryController.update
 );
 /** rota para upload de uma imagem de assinatura de entrega */
@@ -61,6 +63,7 @@ routes.post(
   '/deliveryman/:id/delivery/:delivery_id/problems',
   DeliveryProblemController.store
 );
+
 
 /** ROTAS COM AUTENTICAÇÃO */
 routes.use(authMiddleware);
