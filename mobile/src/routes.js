@@ -8,6 +8,7 @@ import SignIn from '~/pages/SignIn';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 import Detail from '~/pages/Detail';
+import ReportProblem from '~/pages/ReportProblem';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -22,6 +23,7 @@ export default (signedIn = false) =>
               screen: createStackNavigator({
                 Dashboard,
                 Detail,
+                ReportProblem,
               }),
               navigationOptions: {
                 tabBarLabel: 'Entregas',
