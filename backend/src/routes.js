@@ -18,6 +18,8 @@ import TakeDeliveryController from './app/controllers/TakeDeliveryController';
 import FinalizeDeliveryController from './app/controllers/FinalizeDeliveryController';
 import DeliveryProblemController from './app/controllers/DeliveryProblemController';
 import DeliveryProblemPendentController from './app/controllers/GetDeliveryProblemPendentController';
+import DeliveryProblemByDeliveryController from './app/controllers/DeliveryProblemByDeliveryController';
+
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -60,10 +62,15 @@ routes.post(
 
 /** rota para cadastrar um novo problema de entrega */
 routes.post(
-  '/deliveryman/:id/delivery/:delivery_id/problems',
-  DeliveryProblemController.store
+  '/deliveryman/:deliverymanId/delivery/:deliveryId/problems',
+  DeliveryProblemByDeliveryController.store
 );
 
+/** Rota para listar problemas de uma entrega*/
+routes.get(
+  '/deliveryman/:deliverymanId/delivery/:deliveryId/problems',
+  DeliveryProblemByDeliveryController.index
+);
 
 /** ROTAS COM AUTENTICAÇÃO */
 routes.use(authMiddleware);

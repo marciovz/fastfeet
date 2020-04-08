@@ -12,6 +12,9 @@ class DeliveryProblemController {
     const { page = 1, limit = 20 } = req.query;
 
     const deliveriesProblem = await DeliveryProblem.findAll({
+      where: {
+        delivery_id: req.params.deliveryId,
+      },
       limit,
       offset: (page - 1) * limit,
       attributes: ['id', 'description', 'createdAt', 'updatedAt'],
@@ -24,6 +27,7 @@ class DeliveryProblemController {
               model: Deliveryman,
               as: 'deliveryman',
               attributes: ['id', 'name', 'email'],
+              where: {id: req.params.deliverymanId}
             },
           ],
         },
@@ -33,49 +37,36 @@ class DeliveryProblemController {
     return res.json(deliveriesProblem);
   }
 
-  async show(req, res) {
-    const { page = 1, limit = 20 } = req.query;
-
-    const deliveriesProblem = await DeliveryProblem.findAll({
-      where: {
-        delivery_id: req.params.id,
-      },
-      limit,
-      offset: (page - 1) * limit,
+   async store(req, res) {
+    const schema = Yup.object().shape({
+      description: Yup.string().required(),
     });
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fail!' });
+    }
 
-    return res.json(deliveriesProblem);
-  }
-
-  async update(req, res) {
-    let delivery = await Delivery.findOne({
+    const delivery = await Delivery.findOne({
       where: {
-        id: req.params.id,
+        id: req.params.deliveryId,
+        deliveryman_id: req.params.deliverymanId,
         end_date: null,
         canceled_at: null,
       },
-      include: [
-        {
-          model: Deliveryman,
-          as: 'deliveryman',
-        },
-      ],
     });
     if (!delivery) {
       return res.status(401).json({ error: 'Delivery not match!' });
     }
 
-    delivery = await delivery.update({
-      canceled_at: new Date(),
+    const { description } = req.body;
+    const deliveryProblem = await DeliveryProblem.create({
+      delivery_id: delivery.id,
+      description,
     });
 
-    await Queue.add(CancelDeliveryMail.key, {
-      deliveryman: delivery.Deliveryman,
-      delivery,
-    });
-
-    return res.json(delivery);
+    return res.json(deliveryProblem);
   }
+
+  
 }
 
 export default new DeliveryProblemController();
