@@ -84,5 +84,5 @@ export const ListEmpty = styled.View`
 export const TextEmpty = styled.Text`
   font-size: 50px;
   font-weight: bold;
-  color: #eeeeee;
+  color: #e0e0e0;
 `;
