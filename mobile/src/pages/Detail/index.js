@@ -124,7 +124,7 @@ export default function Detail({navigation}) {
 
       <ButtonContainer>
         <LinkButton 
-          handlePress={handleReportProblem} 
+          onPress={handleReportProblem} 
           icon={{name: 'highlight-off', size: 24, color: '#E74040'}}
         >
           Informar Problema
@@ -140,7 +140,7 @@ export default function Detail({navigation}) {
         <LinkButton 
           icon={{name: 'alarm-on', size: 24, color: '#7D40E7'}}
           active={isActiveBtnFinalizeDelivery}
-          handlePress={handleFinalizeDelivery} 
+          onPress={handleFinalizeDelivery} 
         >
           Finalizar Entrega
         </LinkButton>        

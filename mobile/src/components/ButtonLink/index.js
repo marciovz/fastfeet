@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import {Container, LinkIcon, LinkText, Filter} from './styles';
 
-export default function ButtonLink({ children, icon, text, active, handlePress, ...rest}) {
+export default function ButtonLink({ children, icon, text, active, onPress, ...rest}) {
 
   function handleOnPress() {
     if(active) {
-      handlePress();
+      onPress();
     }
   }
   return (
@@ -50,5 +50,5 @@ ButtonLink.defaultProps = {
   icon: null,
   text: '',
   active: true,
-  handlePress: () => [],
+  onPress: () => [],
 }
