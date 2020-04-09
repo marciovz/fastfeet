@@ -9,6 +9,7 @@ import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 import Detail from '~/pages/Detail';
 import ReportProblem from '~/pages/ReportProblem';
+import ViewProblem from '~/pages/ViewProblem';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -24,6 +25,7 @@ export default (signedIn = false) =>
                 Dashboard,
                 Detail,
                 ReportProblem,
+                ViewProblem,
               }),
               navigationOptions: {
                 tabBarLabel: 'Entregas',
