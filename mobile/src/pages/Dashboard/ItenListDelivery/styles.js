@@ -2,6 +2,27 @@ import styled from 'styled-components/native';
 import Button from '~/components/Button';
 
 export const Container = styled.View`
+  margin-Bottom: 30px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #0000001a;
+  /* box-shadow: 0 0 3px #0000001a; */
+`;
+
+export const Header = styled.View`
+  padding: 10px 15px 0;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const TextHeader = styled.Text`
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #7d40e7;
+`;
+
+export const Content = styled.View`
   padding: 20px 15px;
   flex-direction: row;
   justify-content: space-between;

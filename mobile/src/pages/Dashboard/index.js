@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {signOut} from '~/store/modules/auth/actions';
-import {resetCurrentDeliveryRequest} from '~/store/modules/CurrentDelivery/action';
-
 import Avatar from '~/components/Avatar';
-import ItemsListDelivery from '~/components/ItenListDelivery';
-
 import api from '~/services/api';
+
+import ItemsListDelivery from './ItenListDelivery';
+
+import {signOut} from '~/store/modules/auth/actions';
+import {resetCurrentDeliveryRequest} from '~/store/modules/CurrentDelivery/actions';
+
 
 import {
   Container,

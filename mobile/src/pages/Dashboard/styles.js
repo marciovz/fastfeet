@@ -5,7 +5,8 @@ import Button from '~/components/Button';
 
 export const Container = styled.View`
   flex: 1;
-  margin: 30px 20px 20px;
+  padding: 30px 20px 0;
+  background: #ffffff;
 `;
 
 /** Estilização do Header Dashboard */
@@ -50,7 +51,7 @@ export const ContentDashboard = styled.View`
 export const HeaderContentDashboard = styled.View`
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  align-items: center;
 `;
 
 export const TextTitleDashboard = styled.Text`
@@ -73,7 +74,9 @@ export const LinkButton = styled(Button).attrs(props => ({
 
 export const ListDelivery = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
-})``;
+})`
+  margin-top: 15px;
+`;
 
 export const ListEmpty = styled.View`
   flex: 1;

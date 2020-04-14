@@ -42,9 +42,11 @@ export default (signedIn = false) =>
           },
           {
             tabBarOptions: {
-              keyboardHidesTabBar: true,
+              keyboardHidesTabBar: true, 
               activeTintColor: '#7d40e7',
               inactiveTintColor: '#999999',
+              style: {height: 60, padding: 10},
+
             },
           },
         ),
