@@ -10,7 +10,6 @@ class FinalizeDeliveryController {
       signature_id: Yup.number()
         .integer()
         .positive(),
-      end_date: Yup.date().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -37,7 +36,7 @@ class FinalizeDeliveryController {
         return res.status(401).json({ error: 'Delivery does not match!' });
       }
 
-      const { signature_id, end_date } = req.body;
+      const { signature_id } = req.body;
 
       /** if exist signature */
       if (signature_id) {
@@ -47,7 +46,10 @@ class FinalizeDeliveryController {
         }
       }
 
-      delivery = await delivery.update({ signature_id, end_date });
+      delivery = await delivery.update({
+        signature_id, 
+        end_date: new Date(),
+      });
 
       return res.json(delivery);
     } catch (err) {

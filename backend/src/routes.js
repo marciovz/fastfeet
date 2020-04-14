@@ -14,6 +14,7 @@ import signatureController from './app/controllers/SignatureController';
 import DeliveryController from './app/controllers/DeliveryController';
 import GetDeliveriesPendingController from './app/controllers/GetDeliveriesPendingController';
 import GetDeliveriesFinishedController from './app/controllers/GetDeliveriesFinishedController';
+import GetDeliveryByDeliveryIdController from './app/controllers/GetDeliveryByDeliveryIdController';
 import TakeDeliveryController from './app/controllers/TakeDeliveryController';
 import FinalizeDeliveryController from './app/controllers/FinalizeDeliveryController';
 import DeliveryProblemController from './app/controllers/DeliveryProblemController';
@@ -25,7 +26,7 @@ import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 const uploadAvatar = multer(avatarMulterConfig);
-const uploadSigature = multer(signatureMulterConfig);
+const uploadSignature = multer(signatureMulterConfig);
 
 /** ROTAS SEM AUTENTICAÇÃO */
 routes.post('/sessions', SessionController.store);
@@ -41,7 +42,11 @@ routes.get(
   '/deliveryman/:id/deliveries/finished',
   GetDeliveriesFinishedController.index
 );
-
+/** ROTAS PARA BUSCA DE UMA ENTREGA DE UM ENTREGADOR */
+routes.get(
+  '/deliveryman/:deliverymanId/delivery/:deliveryId/findOne',
+  GetDeliveryByDeliveryIdController.show
+);
 /** rota para retirada de encomendas */
 routes.put(
   '/deliveryman/:id/delivery/:delivery_id/takeDelivery',
@@ -56,7 +61,7 @@ routes.put(
 /** rota para upload de uma imagem de assinatura de entrega */
 routes.post(
   '/signatures',
-  uploadSigature.single('file'),
+  uploadSignature.single('file'),
   signatureController.store
 );
 
