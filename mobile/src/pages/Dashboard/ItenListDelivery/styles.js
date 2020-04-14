@@ -51,7 +51,7 @@ export const ButtonLink = styled(Button).attrs({
   fontSize: 12,
   fontWeight: 'bold',
 })`
-  padding: 5px 5px 0;
+  padding: 10px 5px 0;
   height: auto;
   background: transparent;
   border: none;

@@ -69,6 +69,7 @@ export const LinkButton = styled(Button).attrs(props => ({
   margin-left: 15px;
   width: auto;
   height: auto;
+  padding: 10px 0;
   background: transparent;
 `;
 
@@ -78,11 +79,11 @@ export const ListDelivery = styled.FlatList.attrs({
   margin-top: 15px;
 `;
 
-export const ListEmpty = styled.View`
+export const BlockContent = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  border: 1px solid #0000001a;
+  /* border: 1px solid #0000001a; */
 `;
 export const TextEmpty = styled.Text`
   font-size: 50px;

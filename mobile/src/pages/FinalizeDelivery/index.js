@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import  {useSelector, useDispatch} from 'react-redux';
-import {TouchableOpacity, StatusBar} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {TouchableOpacity, StatusBar, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {finalizeCurrentDeliveryInRequest} from '~/store/modules/CurrentDelivery/actions';
@@ -54,7 +54,11 @@ export default function FinalizeDelivery({navigation}) {
       }
     }catch(err){
       setLoading(false);
-      console.tron.log('OPA DEU PAU!!! - ' + err);
+      console.tron.log(err);
+      Alert.alert(
+        'Ocorreu um erro ao tentar finalizar a entrega - Tente novamente.',
+        'Se o erro persistir, verifique sua conexão com o servidor, ou entre em contato com o administrador do aplicativo.',
+      );
     }
   }
 

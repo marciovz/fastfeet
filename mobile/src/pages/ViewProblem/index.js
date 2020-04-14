@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector} from 'react-redux';
-import {StatusBar} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
+import {StatusBar, ActivityIndicator, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ItemsProblem from './ItemListProblem';
 
-import { Container, HeaderTop, ContentBlock, TextTitle, ListProblems, ListEmpty, TextEmpty } from './styles';
+import { Container, HeaderTop, ContentBlock, TextTitle, ListProblems, BlockContent, TextEmpty } from './styles';
 import api from '~/services/api';
 
 
 export default function ViewProblem() {
-  const [problems, setProblems] = useState([]);
   const profileId = useSelector(state => state.user.profile.id);
   const delivery = useSelector(state => state.currentDelivery.delivery);
+  const [problems, setProblems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     try{
+      setLoading(true);
       async function loadProblems() {    
           if(profileId && delivery) {
             const {data} = await api.get(`deliveryman/${profileId}/delivery/${delivery.id}/problems`)
-            setProblems(data);  
+            setProblems(data);
+            setLoading(false);  
           }
       }
       loadProblems();
     }catch(err) {
-      console.tron.log('Não foi possível buscar as informações de problemas da encomenda');
+      setLoading(false);  
+      setProblems([]);
+      console.tron.log(err);
+      Alert.alert(
+        'Falha de cominicação com o servidor',
+        'Não foi possível buscar as informações na base de dados',
+      );
     }
   }, []);
 
@@ -36,22 +44,30 @@ export default function ViewProblem() {
       
       <ContentBlock>
         <TextTitle>{delivery.product}</TextTitle>
-        {problems.length > 0 ? (
-            <ListProblems
-              data={problems}
-              keyExtractor={problem => String(problem.id)}
-              renderItem={({item}) => (
-                <ItemsProblem
-                  key={item.id}
-                  dataProblem={item}
-                />
-              )}
-            />
+        {
+          loading ? (
+            <BlockContent>
+              <ActivityIndicator size="small" color="#7d40e7" />
+            </BlockContent>
           ) : (
-            <ListEmpty>
-              <TextEmpty>Nenhum problema registrado</TextEmpty>
-            </ListEmpty>
-          )}
+            problems.length > 0 ? (
+              <ListProblems
+                data={problems}
+                keyExtractor={problem => String(problem.id)}
+                renderItem={({item}) => (
+                  <ItemsProblem
+                    key={item.id}
+                    dataProblem={item}
+                  />
+                )}
+              />
+            ) : (
+              <BlockContent>
+                <TextEmpty>Nenhum problema registrado</TextEmpty>
+              </BlockContent>
+            )
+          )
+        }
         </ContentBlock>
     
     </Container>

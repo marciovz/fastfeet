@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {useSelector} from 'react-redux';
-import {StatusBar} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import {StatusBar, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 

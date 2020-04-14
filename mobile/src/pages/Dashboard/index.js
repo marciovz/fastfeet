@@ -1,7 +1,7 @@
-import React, {useState, useEffect, use} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import {StatusBar} from 'react-native';
+import {StatusBar, ActivityIndicator, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Avatar from '~/components/Avatar';
@@ -11,7 +11,6 @@ import ItemsListDelivery from './ItenListDelivery';
 
 import {signOut} from '~/store/modules/auth/actions';
 import {resetCurrentDeliveryRequest} from '~/store/modules/CurrentDelivery/actions';
-
 
 import {
   Container,
@@ -26,12 +25,13 @@ import {
   TextTitleDashboard,
   LinkButton,
   ListDelivery,
-  ListEmpty,
+  BlockContent,
   TextEmpty,
 } from './styles';
 
 export default function Dashboard({navigation}) {
   const [deliveries, setDeliveries] = useState([]);
+  const [loading, setLoading] = useState(false);
   const profile = useSelector(state => state.user.profile);
   const dispatch = useDispatch();
 
@@ -42,15 +42,27 @@ export default function Dashboard({navigation}) {
   }, []);
   
   useEffect(() => {
-    async function loadDeliveries() {
-      if (profile && profile.id) {
-        const {data} = await api.get(
-          `/deliveryman/${profile.id}/deliveries/${filterActive}`,
-        );
-        setDeliveries(data);
+    try{
+      setLoading(true);
+      async function loadDeliveries() {
+        if (profile && profile.id) {
+          const {data} = await api.get(
+            `/deliveryman/${profile.id}/deliveries/${filterActive}`,
+          );
+          setDeliveries(data);
+          setLoading(false);
+        }
       }
+      loadDeliveries();  
+    }catch(err){
+      setDeliveries([]);
+      setLoading(false);
+      console.tron.log(err);
+      Alert.alert(
+        'Falha de comunicação com o servidor',
+        'Não foi possível buscar as informações na base de dados',
+      );
     }
-    loadDeliveries();
   }, [filterActive]);
 
   function handleSetFilter(filter) {
@@ -74,6 +86,7 @@ export default function Dashboard({navigation}) {
           <IconExit name="exit-to-app" size={30} color="#E74040" />
         </LogoutButton>
       </HeaderDashboard>
+
       <ContentDashboard>
         <HeaderContentDashboard>
           <TextTitleDashboard>Entregas</TextTitleDashboard>
@@ -88,23 +101,31 @@ export default function Dashboard({navigation}) {
             Entregues
           </LinkButton>
         </HeaderContentDashboard>
-        {deliveries.length > 0 ? (
-          <ListDelivery
-            data={deliveries}
-            keyExtractor={delivery => String(delivery.id)}
-            renderItem={({item}) => (
-              <ItemsListDelivery
-                key={item.id}
-                dataDelivery={item}
-                navigation={navigation}
+        { 
+          loading ? (
+            <BlockContent>
+              <ActivityIndicator size="large" color="#7d40e7" />
+            </BlockContent>
+          ) : (
+            deliveries.length > 0 ? (
+              <ListDelivery
+                data={deliveries}
+                keyExtractor={delivery => String(delivery.id)}
+                renderItem={({item}) => (
+                  <ItemsListDelivery
+                    key={item.id}
+                    dataDelivery={item}
+                    navigation={navigation}
+                  />
+                )}
               />
-            )}
-          />
-        ) : (
-          <ListEmpty>
-            <TextEmpty>Vazio</TextEmpty>
-          </ListEmpty>
-        )}
+            ) : (
+              <BlockContent>
+                <TextEmpty>Vazio</TextEmpty>
+              </BlockContent>
+            )
+          )
+        }
       </ContentDashboard>
     </Container>
   );

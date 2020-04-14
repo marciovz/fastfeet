@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {useSelector} from 'react-redux';
-import {StatusBar} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import {StatusBar, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
@@ -10,23 +9,32 @@ import { Container, HeaderTop, Form, Textarea, SubmitButton} from './styles';
 
 export default function ReportProblem({navigation}) {
   const reportRef = useRef();
-  const loading = useSelector(state => state.auth.loading);
-  const [textValue, setTextValue] = useState('');
   const profile = useSelector(state => state.user.profile);
   const delivery = useSelector(state => state.currentDelivery.delivery);
+  
+  const [textValue, setTextValue] = useState('');
+  const [loading, setLoading] = useState(false);  
+  
 
   function handleSubmit() {
     if(textValue !== ''){
       try {
+        setLoading(true);
         api.post(`/deliveryman/${profile.id}/delivery/${delivery.id}/problems`, {
           description: textValue,
         });
+        setLoading(false);
         navigation.navigate('Detail');
       } catch(err) {
-        console.tron.log('Não foi possível adicionar o problema da entrega!');
+        setLoading(false);
+        console.tron.log(err);
+        Alert.alert(
+          'Falha de comunicação com o servidor',
+          'Não foi possível enviar as informações para a base de dados',
+        );
+        
       }
     }
-    
   }
 
   return (

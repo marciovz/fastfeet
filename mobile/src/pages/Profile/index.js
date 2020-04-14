@@ -17,6 +17,7 @@ import {
 export default function Profile() {
   const dispatch = useDispatch();
 
+  const loading = useSelector(state => state.auth.loading);
   const profile = useSelector(state => state.user.profile);
 
   const formatedDate = useMemo(() => {
@@ -41,7 +42,7 @@ export default function Profile() {
       <TextTitle>Data de cadastro </TextTitle>
       <TextContent>{formatedDate}</TextContent>
 
-      <LogoutButton onPress={handleLogout}>Logout</LogoutButton>
+      <LogoutButton loading={loading} onPress={handleLogout}>Logout</LogoutButton>
     </Container>
   );
 }

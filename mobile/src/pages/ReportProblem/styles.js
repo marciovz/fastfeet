@@ -4,6 +4,7 @@ import Button from '~/components/Button';
 import TextArea from '~/components/TextArea';
 
 export const Container = styled.View`
+  flex: 1;
   background: #ffffff;
 `;
 

@@ -28,7 +28,7 @@ export const TextTitle = styled.Text`
 export const ListProblems = styled(FlatList)`
 `;
 
-export const ListEmpty = styled.View`
+export const BlockContent = styled.View`
   margin-top: 15px;
   padding: 20px;
   min-height: 160px;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ButtonLink from '~/components/ButtonLink';
 
 export const Container = styled.View`
+  flex: 1;
   background: #ffffff;
 `;
 

@@ -6,6 +6,7 @@ import Button from '~/components/Button';
 export const Container = styled.View`
   flex: 1;
   padding: 30px;
+  background: #ffffff;
 `;
 
 export const AvatarProfile = styled(Avatar)`
