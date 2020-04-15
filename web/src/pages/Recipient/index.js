@@ -7,7 +7,7 @@ import history from '~/services/history';
 
 import PageListHeader from '~/components/Pages/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
-import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
+import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
 
@@ -60,7 +60,7 @@ export default function Recipient() {
     <PageListContainer>
       <PageListHeader title="Gerenciando destinatários">
         <InputSearch onChange={handleSearch} name="search" />
-        <LinkNewRegister link="/recipient/new" />
+        <LinkRegister link="/recipient/new" />
       </PageListHeader>
       <PageListContent>
         <TitleList gridList="recipient">

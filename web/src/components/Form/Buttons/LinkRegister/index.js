@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container, Icon } from './styles';
 
-function LinkNewRegister({ link }) {
+function LinkRegister({ link }) {
   return (
     <Container to={link}>
       <Icon />
@@ -12,8 +12,8 @@ function LinkNewRegister({ link }) {
   );
 }
 
-LinkNewRegister.propTypes = {
+LinkRegister.propTypes = {
   link: PropTypes.string.isRequired,
 };
 
-export default memo(LinkNewRegister);
+export default memo(LinkRegister);

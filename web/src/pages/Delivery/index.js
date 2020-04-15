@@ -7,7 +7,7 @@ import history from '~/services/history';
 
 import PageListHeader from '~/components/Pages/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
-import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
+import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
 import LabelStatus from '~/components/Tags/LabelStatus';
 import MenuActions from '~/components/Submenus/MenuActions';
@@ -89,7 +89,7 @@ export default function Delivery() {
     <PageListContainer>
       <PageListHeader title="Gerenciando encomendas">
         <InputSearch onChange={handleSearch} name="search" />
-        <LinkNewRegister link="/delivery/new" />
+        <LinkRegister link="/delivery/new" />
       </PageListHeader>
       <PageListContent>
         <TitleList gridList="delivery">

@@ -7,7 +7,7 @@ import history from '~/services/history';
 
 import PageListHeader from '~/components/Pages/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
-import LinkNewRegister from '~/components/Form/Buttons/LinkNewRegister';
+import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
@@ -60,7 +60,7 @@ export default function Deliveryman() {
           onChange={e => setDeliverymanFilter(e.target.value)}
           name="search"
         />
-        <LinkNewRegister link="/deliveryman/new" />
+        <LinkRegister link="/deliveryman/new" />
       </PageListHeader>
       <PageListContent>
         <TitleList gridList="deliveryman">
