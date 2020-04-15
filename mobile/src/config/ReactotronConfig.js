@@ -3,9 +3,11 @@ import {reactotronRedux} from 'reactotron-redux';
 import reactotronSaga from 'reactotron-redux-saga';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import hostBackend from '~/config/hostBackend';
+
 if (__DEV__) {
   const tron = Reactotron.setAsyncStorageHandler(AsyncStorage)
-    .configure({host: '192.168.1.101'})
+    .configure({ host: hostBackend.host } )
     .useReactNative()
     .use(reactotronRedux())
     .use(reactotronSaga())
