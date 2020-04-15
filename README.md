@@ -6,13 +6,13 @@ Com o Fastfeet o administrador pode cadastrar entregadores, cadastrar e distribu
 
 A aplicação utiliza as tecnologias NodeJS no back-end, ReactJS no front-end e React-Native no mobile, e faz parte do desafio final para certificação do curso Bootcamp da Rocketseat.
 
-Para testar o sistema Fastfeet, é necessária a instalação do servidor backend, web e o mobile.
+Para testar o sistema Fastfeet, é necessário a instalação do servidor backend, web e o mobile.
 
 ## :gear: Back-end
 
 Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e responder todas as requisições da aplicação. Utiliza tecnologia JWT nas autenticações de usuários, banco postgree para armazenamento dos dados da entrega, dos entregadores, dos destinatários entre outros, e o banco Redis para armazenamento de dados da fila de envio de emails.
 
-### :information_source: Instalação do servidor backend local
+### Instalação do servidor backend local
 
 #### 1. Criação e inicialização dos bancos de dados
 
@@ -72,7 +72,16 @@ No arquivo .env preencher as seguintes variáveis de configuração:
  MAIL_PASS=sua_senha_de_acesso_ao_mailtrap
 ```
 
-#### 4. Iniciando o servidor back-end
+#### 4. Criando e populando a Base de dados para teste
+```bash
+ # Rodar a migração
+ $ yarn sequelize db:migrate
+
+ # Rodar o seeds
+ $ yarn sequelize db:seed:all
+```
+
+#### 5. Iniciando o servidor back-end
 
 Com os bancos de dados já rodando, item 1, iniciar o servidor da aplicação e o servidor de envio de emails.
 ```bash
@@ -98,14 +107,14 @@ A versão mobile do projeto Fastfeet é direcionada para entregadores gerenciare
 Com o aplicativo mobile o entregador terá acesso a sua listagem de entregas finalizadas e pendentes, detalhes de cada encomenda,
 poderá visualizar e adicionar problemas decorrentes na entrega, e finalizar a entrega enviando uma imagem da assinatura do destinatário.
 
-### :information_source: Instalação e configuração (Mobile)
+### Instalação e configuração (Mobile)
   ###### Obs.: O app fastfeet foi desenvolvido e testado apenas para a plataforma ANDROID.
 
-#### Instalação do React-Native
+#### 1. Instalação do React-Native
 
-#### Configuração do emulador
+#### 2. Configuração do emulador
 
-#### Configuração do aplicativo
+#### 3. Configuração do aplicativo
 ```bash
  # Acessar a pasta do projeto mobile pelo terminal e instalar as dependências do projeto
  $ cd fastfeet/mobile
