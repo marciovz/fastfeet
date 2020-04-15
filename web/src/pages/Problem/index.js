@@ -4,7 +4,7 @@ import { MdVisibility, MdDelete } from 'react-icons/md';
 
 import api from '~/services/api';
 
-import PageListHeader from '~/components/Pages/PageList/PageListHeader';
+import PageListHeader from '~/components/PageList/PageListHeader';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
 import ProblemModal from '~/components/Modals/ProblemModal';
@@ -15,7 +15,7 @@ import {
   TitleList,
   ContentList,
   LineList,
-} from '~/components/Pages/PageList/styles';
+} from '~/components/PageList/styles';
 
 export default function Problem() {
   const [problems, setProblems] = useState([]);

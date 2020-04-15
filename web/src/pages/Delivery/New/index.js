@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import HeaderForm from '~/components/Pages/PagesForm/HeaderForm';
+import HeaderForm from '~/components/PagesForm/HeaderForm';
 import ButtonSave from '~/components/Form/Buttons/Save';
 import ButtonGoBack from '~/components/Form/Buttons/GoBack';
-import ContentForm from '~/components/Pages/PagesForm/ContentForm';
-import FormDelivery from '~/components/Pages/PagesForm/FormDelivery';
+import ContentForm from '~/components/PagesForm/ContentForm';
+import FormDelivery from '~/components/PagesForm/FormDelivery';
 
-import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
+import { ContainerPagesForm } from '~/components/PagesForm/styles';
 
 export default function New() {
   function handleGoBack() {

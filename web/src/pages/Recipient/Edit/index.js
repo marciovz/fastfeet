@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import HeaderForm from '~/components/Pages/PagesForm/HeaderForm';
+import HeaderForm from '~/components/PagesForm/HeaderForm';
 import ButtonGoBack from '~/components/Form/Buttons/GoBack';
 import ButtonSave from '~/components/Form/Buttons/Save';
-import ContentForm from '~/components/Pages/PagesForm/ContentForm';
-import FormRecipient from '~/components/Pages/PagesForm/FormRecipient';
+import ContentForm from '~/components/PagesForm/ContentForm';
+import FormRecipient from '~/components/PagesForm/FormRecipient';
 
-import { ContainerPagesForm } from '~/components/Pages/PagesForm/styles';
+import { ContainerPagesForm } from '~/components/PagesForm/styles';
 
 export default function Edit() {
   const { id } = useParams();

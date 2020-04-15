@@ -5,7 +5,7 @@ import { MdEdit, MdDelete } from 'react-icons/md';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import PageListHeader from '~/components/Pages/PageList/PageListHeader';
+import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import InitialLetters from '~/components/Tags/InitialLetters';
@@ -18,7 +18,7 @@ import {
   TitleList,
   ContentList,
   LineList,
-} from '~/components/Pages/PageList/styles';
+} from '~/components/PageList/styles';
 
 export default function Deliveryman() {
   const [deliverymans, setDeliverymans] = useState([]);
