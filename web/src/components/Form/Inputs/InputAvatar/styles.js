@@ -12,45 +12,23 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 150px;
-    height: 150px;
-    border: 1px dashed #dddddd;
+    width: 152px;
+    height: 152px;
+    border: 2px dashed #dddddd;
     border-radius: 50%;
 
     &:hover {
       cursor: pointer;
     }
-
-    /* estilização adicional componente initialLetters */
-    & .initialLetterContainer span {
-      width: 150px;
-      height: 150px;
-      margin: 0;
-      font-size: 52px;
+ 
+    /* Texto modo ícone */
+    p {
+      font-size: 16px;
       font-weight: bold;
-    }
-    /* eslização para icone */
-    svg {
-      width: 40px;
-      height: 40px;
-    }
-    /* eslização para imagem */
-    img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: contain;
-      object-position: center;
-      background-repeat: no-repeat;
     }
 
     input {
       display: none;
-    }
-
-    p {
-      font-size: 16px;
-      font-weight: bold;
     }
   }
 `;

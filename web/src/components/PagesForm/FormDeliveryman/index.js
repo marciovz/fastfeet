@@ -14,9 +14,7 @@ export default function FormDeliveryman({ onSubmit, dataDeliveryman }) {
       setInitialData({
         name: dataDeliveryman.name,
         email: dataDeliveryman.email,
-        avatar: dataDeliveryman.Avatar
-          ? dataDeliveryman.Avatar
-          : { name: dataDeliveryman.name },
+        avatar: dataDeliveryman,
       });
     }
   }, [dataDeliveryman]);
@@ -27,7 +25,7 @@ export default function FormDeliveryman({ onSubmit, dataDeliveryman }) {
       onSubmit={onSubmit}
       initialData={initialData}
     >
-      <InputAvatar name="avatar_id" />
+      <InputAvatar name="avatar_id"/>
       <Input
         name="name"
         type="text"

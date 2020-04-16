@@ -8,7 +8,7 @@ import history from '~/services/history';
 import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
-import InitialLetters from '~/components/Tags/InitialLetters';
+import Avatar from '~/components/Tags/Avatar';
 import LabelStatus from '~/components/Tags/LabelStatus';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
@@ -20,6 +20,7 @@ import {
   TitleList,
   ContentList,
   LineList,
+  ContentInline,
 } from '~/components/PageList/styles';
 
 export default function Delivery() {
@@ -106,9 +107,14 @@ export default function Delivery() {
             <LineList key={delivery.id} gridList="delivery">
               <p>{delivery.id}</p>
               <p>{delivery.product}</p>
-              <InitialLetters name={delivery.deliveryman.name}>
+              <ContentInline>
+                <Avatar 
+                  size={35} 
+                  dataImageUrl={delivery.deliveryman.Avatar && delivery.deliveryman.Avatar.url || null} 
+                  dataNameProfile={delivery.deliveryman.name}
+                />
                 <p>{delivery.deliveryman.name}</p>
-              </InitialLetters>
+              </ContentInline>
               <p>{delivery.recipient.city}</p>
               <p>{delivery.recipient.state}</p>
               <LabelStatus status={delivery.status} />

@@ -8,7 +8,7 @@ import history from '~/services/history';
 import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
-import InitialLetters from '~/components/Tags/InitialLetters';
+import Avatar from '~/components/Tags/Avatar';
 import MenuActions from '~/components/Submenus/MenuActions';
 import Actions from '~/components/Submenus/MenuActions/Actions';
 
@@ -18,6 +18,7 @@ import {
   TitleList,
   ContentList,
   LineList,
+  ContentInline,
 } from '~/components/PageList/styles';
 
 export default function Deliveryman() {
@@ -74,7 +75,13 @@ export default function Deliveryman() {
           {deliverymans.map(deliveryman => (
             <LineList key={deliveryman.id} gridList="deliveryman">
               <p>{deliveryman.id}</p>
-              <InitialLetters name={deliveryman.name} />
+              <ContentInline>
+                <Avatar 
+                  size={35} 
+                  dataImageUrl={deliveryman.Avatar && deliveryman.Avatar.url || null}
+                  dataNameProfile={deliveryman.name} 
+                />
+              </ContentInline>
               <p>{deliveryman.name}</p>
               <p>{deliveryman.email}</p>
               <MenuActions>

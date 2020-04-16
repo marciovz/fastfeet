@@ -1,4 +1,6 @@
 const initialLetters = name => {
+  if(name === null) return 'NO';
+  
   const arrayName = name.split(' ');
   const arrayLetters = [];
 

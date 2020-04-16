@@ -43,6 +43,7 @@ export const ContentList = styled.div`
 `;
 
 export const LineList = styled.div`
+  display: flex;
   margin: 21px 0;
   padding: 0 25px;
   height: 57px;
@@ -56,5 +57,14 @@ export const LineList = styled.div`
   > p {
     font-size: 16px;
     color: #666666;
+  }
+`;
+
+export const ContentInline = styled.div`
+  display: flex;
+  align-items: center;
+
+  & p {
+    margin-left: 5px;
   }
 `;

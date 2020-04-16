@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 import { MdImage } from 'react-icons/md';
 
-import InitialLetters from '~/components/Tags/InitialLetters';
+import Avatar from '~/components/Tags/Avatar';
 
 import api from '~/services/api';
 
@@ -11,8 +11,9 @@ import { Container, Filtro } from './styles';
 export default function InputAvatar() {
   const { defaultValue, registerField } = useField('avatar');
 
-  const [file, setFile] = useState(null);
-  const [avatar, setAvatar] = useState(null);
+  const [avatarId, setAvatarId] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [nameProfile, setNameProfile] = useState(null);
 
   const ref = useRef();
 
@@ -28,45 +29,34 @@ export default function InputAvatar() {
 
   useEffect(() => {
     if (defaultValue) {
-      setFile(defaultValue.id);
-      setAvatar(defaultValue);
+      setNameProfile(defaultValue.name);
+      setAvatarUrl((defaultValue.Avatar && defaultValue.Avatar.url) || null);
     }
   }, [defaultValue]); // eslint-disable-line
-
-  const avatarView = useCallback(() => {
-    if (avatar && avatar.url) {
-      return <img src={avatar.url} alt="imagem do avatar" />;
-    }
-    return <InitialLetters name={avatar.name} />;
-  }, [avatar]);
 
   async function handleChange(e) {
     const data = new FormData();
     data.append('file', e.target.files[0]);
     const response = await api.post('avatars', data);
     const { id, url } = response.data;
-    setFile(id);
-    setAvatar({ id, url });
+    setAvatarId(id);
+    setAvatarUrl(url);
   }
 
   return (
     <Container>
       <label htmlFor="avatar">
-        {avatar ? (
-          avatarView()
-        ) : (
-          <>
-            <MdImage />
-            <p>Adicionar Foto</p>
-            <Filtro />
-          </>
-        )}
+        <Avatar size={150} dataImageUrl={avatarUrl} dataNameProfile={nameProfile}>
+          <MdImage size={40} />
+          <p>Adicionar Foto</p>
+          <Filtro />
+        </Avatar>
 
         <input
           id="avatar"
           type="file"
           accept="image/*"
-          data-file={file}
+          data-file={avatarId}
           onChange={handleChange}
           ref={ref}
         />
