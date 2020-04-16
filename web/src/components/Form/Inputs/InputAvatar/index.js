@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 import { MdImage } from 'react-icons/md';
 
-import Avatar from '~/components/Tags/Avatar';
+import Avatar from '~/components/Avatar';
 
 import api from '~/services/api';
 

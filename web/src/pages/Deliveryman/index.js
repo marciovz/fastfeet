@@ -8,7 +8,7 @@ import history from '~/services/history';
 import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
-import Avatar from '~/components/Tags/Avatar';
+import Avatar from '~/components/Avatar';
 import MenuActions from '~/components/PageList/MenuActions';
 import Actions from '~/components/PageList/MenuActions/Actions';
 
