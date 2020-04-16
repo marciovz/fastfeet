@@ -89,7 +89,11 @@ export default function Delivery() {
   return (
     <PageListContainer>
       <PageListHeader title="Gerenciando encomendas">
-        <InputSearch onChange={handleSearch} name="search" />
+        <InputSearch 
+          onChange={handleSearch}
+          name="search" 
+          placeholder="Buscar por produtos"
+        />
         <LinkRegister link="/delivery/new" />
       </PageListHeader>
       <PageListContent>

@@ -60,6 +60,7 @@ export default function Deliveryman() {
         <InputSearch
           onChange={e => setDeliverymanFilter(e.target.value)}
           name="search"
+          placeholder="Buscar por entregadores"
         />
         <LinkRegister link="/deliveryman/new" />
       </PageListHeader>

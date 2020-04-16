@@ -59,7 +59,11 @@ export default function Recipient() {
   return (
     <PageListContainer>
       <PageListHeader title="Gerenciando destinatários">
-        <InputSearch onChange={handleSearch} name="search" />
+        <InputSearch 
+          onChange={handleSearch} 
+          name="search"
+          placeholder="Buscar por destinatários"
+        />
         <LinkRegister link="/recipient/new" />
       </PageListHeader>
       <PageListContent>

@@ -24,5 +24,9 @@ export const Container = styled.div`
     color: #444444;
     border: none;
     background: transparent;
+
+    &::placeholder {
+      color: #999999;
+    }
   }
 `;

@@ -4,11 +4,11 @@ import { MdSearch } from 'react-icons/md';
 
 import { Container } from './styles';
 
-function InputSearch({ onChange }) {
+function InputSearch(props) {
   return (
     <Container>
       <MdSearch />
-      <input onChange={onChange} />
+      <input {...props } />
     </Container>
   );
 }
