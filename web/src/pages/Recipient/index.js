@@ -8,8 +8,8 @@ import history from '~/services/history';
 import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
-import MenuActions from '~/components/Submenus/MenuActions';
-import Actions from '~/components/Submenus/MenuActions/Actions';
+import MenuActions from '~/components/PageList/MenuActions';
+import Actions from '~/components/PageList/MenuActions/Actions';
 
 import {
   PageListContainer,
@@ -76,19 +76,11 @@ export default function Recipient() {
               <p>{recipient.name}</p>
               <p>{`${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}</p>
               <MenuActions>
-                <Actions
-                  onClick={() => {
-                    history.push(`/recipient/${recipient.id}/edit`);
-                  }}
-                >
+                <Actions onClick={() => { history.push(`/recipient/${recipient.id}/edit`) }}>
                   <MdEdit color="#4d85ee" />
                   Editar
                 </Actions>
-                <Actions
-                  onClick={() => {
-                    handleDeleteRecipient(recipient.id);
-                  }}
-                >
+                <Actions onClick={() => { handleDeleteRecipient(recipient.id) }}>
                   <MdDelete color="#DE3B3B" />
                   Excluir
                 </Actions>

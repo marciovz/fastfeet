@@ -10,8 +10,8 @@ import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import Avatar from '~/components/Tags/Avatar';
 import LabelStatus from '~/components/Tags/LabelStatus';
-import MenuActions from '~/components/Submenus/MenuActions';
-import Actions from '~/components/Submenus/MenuActions/Actions';
+import MenuActions from '~/components/PageList/MenuActions';
+import Actions from '~/components/PageList/MenuActions/Actions';
 import DeliveryModal from '~/components/Modals/DeliveryModal';
 
 import {
@@ -110,7 +110,7 @@ export default function Delivery() {
               <ContentInline>
                 <Avatar 
                   size={35} 
-                  dataImageUrl={delivery.deliveryman.Avatar && delivery.deliveryman.Avatar.url || null} 
+                  dataImageUrl={(delivery.deliveryman.Avatar && delivery.deliveryman.Avatar.url) || null} 
                   dataNameProfile={delivery.deliveryman.name}
                 />
                 <p>{delivery.deliveryman.name}</p>
@@ -119,27 +119,15 @@ export default function Delivery() {
               <p>{delivery.recipient.state}</p>
               <LabelStatus status={delivery.status} />
               <MenuActions>
-                <Actions
-                  onClick={() => {
-                    handleShowModal(delivery);
-                  }}
-                >
+                <Actions onClick={() => { handleShowModal(delivery) }}>
                   <MdVisibility color="#8e5be8" />
                   Visualizar
                 </Actions>
-                <Actions
-                  onClick={() => {
-                    history.push(`/delivery/${delivery.id}/edit`);
-                  }}
-                >
+                <Actions onClick={() => { history.push(`/delivery/${delivery.id}/edit`) }}>
                   <MdEdit color="#4d85ee" />
                   Editar
                 </Actions>
-                <Actions
-                  onClick={() => {
-                    handleDeleteDelivery(delivery.id);
-                  }}
-                >
+                <Actions onClick={() => { handleDeleteDelivery(delivery.id) }}>
                   <MdDelete color="#DE3B3B" />
                   Excluir
                 </Actions>

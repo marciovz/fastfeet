@@ -5,8 +5,8 @@ import { MdVisibility, MdDelete } from 'react-icons/md';
 import api from '~/services/api';
 
 import PageListHeader from '~/components/PageList/PageListHeader';
-import MenuActions from '~/components/Submenus/MenuActions';
-import Actions from '~/components/Submenus/MenuActions/Actions';
+import MenuActions from '~/components/PageList/MenuActions';
+import Actions from '~/components/PageList/MenuActions/Actions';
 import ProblemModal from '~/components/Modals/ProblemModal';
 
 import {
@@ -74,19 +74,11 @@ export default function Problem() {
               <p>{problem.delivery.id}</p>
               <p>{problem.description}</p>
               <MenuActions>
-                <Actions
-                  onClick={() => {
-                    handleShowModal(problem);
-                  }}
-                >
+                <Actions onClick={() => { handleShowModal(problem) }}>
                   <MdVisibility color="#8e5be8" />
                   Visualizar
                 </Actions>
-                <Actions
-                  onClick={() => {
-                    handleCancelDelivery(problem);
-                  }}
-                >
+                <Actions onClick={() => { handleCancelDelivery(problem) }}>
                   <MdDelete color="#DE3B3B" />
                   Cancelar Encomenda
                 </Actions>

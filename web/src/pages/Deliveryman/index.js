@@ -9,8 +9,8 @@ import PageListHeader from '~/components/PageList/PageListHeader';
 import InputSearch from '~/components/Form/Inputs/InputSearch';
 import LinkRegister from '~/components/Form/Buttons/LinkRegister';
 import Avatar from '~/components/Tags/Avatar';
-import MenuActions from '~/components/Submenus/MenuActions';
-import Actions from '~/components/Submenus/MenuActions/Actions';
+import MenuActions from '~/components/PageList/MenuActions';
+import Actions from '~/components/PageList/MenuActions/Actions';
 
 import {
   PageListContainer,
@@ -78,26 +78,18 @@ export default function Deliveryman() {
               <ContentInline>
                 <Avatar 
                   size={35} 
-                  dataImageUrl={deliveryman.Avatar && deliveryman.Avatar.url || null}
+                  dataImageUrl={(deliveryman.Avatar && deliveryman.Avatar.url) || null}
                   dataNameProfile={deliveryman.name} 
                 />
               </ContentInline>
               <p>{deliveryman.name}</p>
               <p>{deliveryman.email}</p>
               <MenuActions>
-                <Actions
-                  onClick={() => {
-                    history.push(`/deliveryman/${deliveryman.id}/edit`);
-                  }}
-                >
+                <Actions onClick={() => { history.push(`/deliveryman/${deliveryman.id}/edit`) }}>
                   <MdEdit color="#4d85ee" />
                   Editar
                 </Actions>
-                <Actions
-                  onClick={() => {
-                    handleDeleteDeliveryman(deliveryman.id);
-                  }}
-                >
+                <Actions onClick={() => { handleDeleteDeliveryman(deliveryman.id) }}>
                   <MdDelete color="#DE3B3B" />
                   Excluir
                 </Actions>
