@@ -24,6 +24,7 @@ import {
 export default function Deliveryman() {
   const [deliverymans, setDeliverymans] = useState([]);
   const [deliverymanFilter, setDeliverymanFilter] = useState('');
+  const gridDeliveryman = "1fr 1fr 2fr 2fr 1fr";
 
   useEffect(() => {
     async function loadDeliverymans() {
@@ -65,7 +66,7 @@ export default function Deliveryman() {
         <LinkRegister link="/deliveryman/new" />
       </PageListHeader>
       <PageListContent>
-        <TitleList gridList="deliveryman">
+        <TitleList grid={gridDeliveryman}>
           <h1>ID</h1>
           <h1>Foto</h1>
           <h1>Nome</h1>
@@ -74,7 +75,7 @@ export default function Deliveryman() {
         </TitleList>
         <ContentList>
           {deliverymans.map(deliveryman => (
-            <LineList key={deliveryman.id} gridList="deliveryman">
+            <LineList key={deliveryman.id} grid={gridDeliveryman}>
               <p>{deliveryman.id}</p>
               <ContentInline>
                 <Avatar 

@@ -23,6 +23,7 @@ export default function Problem() {
     show: false,
     delivery: null,
   });
+  const gridProblem = "1fr 3fr 1fr";
 
   useEffect(() => {
     async function loadProblems() {
@@ -62,14 +63,14 @@ export default function Problem() {
     <PageListContainer>
       <PageListHeader title="Problemas na entrega" />
       <PageListContent>
-        <TitleList gridList="problem">
+        <TitleList grid={gridProblem}>
           <h1>Encomenda</h1>
           <h1>Problema</h1>
           <h1>Ações</h1>
         </TitleList>
         <ContentList>
           {problems.map(problem => (
-            <LineList key={problem.id} gridList="problem">
+            <LineList key={problem.id} grid={gridProblem}>
               <p>{problem.delivery.id}</p>
               <p>{problem.description}</p>
               <MenuActions>

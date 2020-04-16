@@ -22,6 +22,7 @@ import {
 export default function Recipient() {
   const [recipients, setRecipients] = useState([]);
   const [nameFilter, setNameFilter] = useState('');
+  const gridRecipient = "1fr 2fr 3fr 1fr";
 
   useEffect(() => {
     async function loadRecipients() {
@@ -67,7 +68,7 @@ export default function Recipient() {
         <LinkRegister link="/recipient/new" />
       </PageListHeader>
       <PageListContent>
-        <TitleList gridList="recipient">
+        <TitleList grid={gridRecipient}>
           <h1>ID</h1>
           <h1>Nome</h1>
           <h1>Endereço</h1>
@@ -75,7 +76,7 @@ export default function Recipient() {
         </TitleList>
         <ContentList>
           {recipients.map(recipient => (
-            <LineList key={recipient.id} gridList="recipient">
+            <LineList key={recipient.id} grid={gridRecipient}>
               <p>{recipient.id}</p>
               <p>{recipient.name}</p>
               <p>{`${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}</p>

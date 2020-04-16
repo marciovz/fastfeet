@@ -30,6 +30,8 @@ export default function Delivery() {
     show: false,
     delivery: null,
   });
+  const gridDelivery = "1fr 3fr 4fr 3fr 2fr 2fr 1fr";
+  // "1fr 2fr 3fr 2fr 1fr 2fr 1fr"
 
   useEffect(() => {
     async function loadDeliveries() {
@@ -97,7 +99,7 @@ export default function Delivery() {
         <LinkRegister link="/delivery/new" />
       </PageListHeader>
       <PageListContent>
-        <TitleList gridList="delivery">
+        <TitleList grid={gridDelivery}>
           <h1>ID</h1>
           <h1>Produto</h1>
           <h1>Entregador</h1>
@@ -108,7 +110,7 @@ export default function Delivery() {
         </TitleList>
         <ContentList>
           {deliveries.map(delivery => (
-            <LineList key={delivery.id} gridList="delivery">
+            <LineList key={delivery.id} grid={gridDelivery}>
               <p>{delivery.id}</p>
               <p>{delivery.product}</p>
               <ContentInline>
