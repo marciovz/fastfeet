@@ -30,7 +30,7 @@ export default function Problem() {
         const response = await api.get('/deliveries/problem/pendent');
         setProblems(response.data);
       } catch (err) {
-        console.tron.log(err);
+        toast.error("Não foi possível acessar os dados no servidor");
       }
     }
     loadProblems();
@@ -43,7 +43,6 @@ export default function Problem() {
       const newList = problems.filter(
         item => item.delivery.id !== problem.delivery.id
       );
-      console.tron.log(newList);
       setProblems(newList);
       toast.success('Encomenda cancelada com sucesso!');
     } catch (err) {

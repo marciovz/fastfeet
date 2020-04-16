@@ -34,7 +34,7 @@ export default function Recipient() {
 
         setRecipients(response.data);
       } catch (err) {
-        console.tron.log(err);
+        toast.error("Não foi possível acessar os dados no servidor");
       }
     }
     loadRecipients();

@@ -41,13 +41,6 @@ export default function Delivery() {
         });
 
         const data = response.data.map(item => {
-          function getStatus(start_date, end_date, canceled) {
-            if (canceled) return 'CANCELADA';
-            if (end_date) return 'ENTREGUE';
-            if (start_date) return 'RETIRADA';
-            return 'PENDENTE';
-          }
-
           return {
             ...item,
             status: getStatus(item.start_date, item.end_date, item.canceled),
@@ -55,12 +48,19 @@ export default function Delivery() {
         });
 
         setDeliveries(data);
-      } catch (err) {
-        console.tron.log(err);
+      } catch (err) {      
+        toast.error("Erro ao acessar os dados no servidor");
       }
     }
     loadDeliveries();
   }, [productFilter]);
+
+  function getStatus(start_date, end_date, canceled) {
+    if (canceled) return 'CANCELADA';
+    if (end_date) return 'ENTREGUE';
+    if (start_date) return 'RETIRADA';
+    return 'PENDENTE';
+  }
 
   async function handleDeleteDelivery(id) {
     try {
