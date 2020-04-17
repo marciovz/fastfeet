@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '~/components/Form/Inputs/Input';
-import AsyncSelectInput from '~/components/Form/Selects/AsyncSelectInput';
+import AsyncSelectInput from '~/components/Form/Inputs/AsyncSelectInput';
 import { getAllState, getStateByAcronym } from '~/util/brazilianStates';
 
 import { FormContainer, Line } from './styles';

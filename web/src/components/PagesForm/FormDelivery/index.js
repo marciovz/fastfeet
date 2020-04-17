@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from '@unform/web';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 
 import Input from '~/components/Form/Inputs/Input';
-import AsyncSelectInput from '~/components/Form/Selects/AsyncSelectInput';
+import AsyncSelectInput from '~/components/Form/Inputs/AsyncSelectInput';
 
 import { Container, Line } from './styles';
 
@@ -64,31 +63,28 @@ export default function FormDelivery({ dataDelivery, onSubmit }) {
   }
 
   return (
-    <Container>
-      <Form id="formDelivery" onSubmit={onSubmit} initialData={initialData}>
-        <Line>
-          <AsyncSelectInput
-            name="recipient"
-            label="Destinatário"
-            loadOptions={optionsRecipient}
-            placeholder="Selecione um destinatário"
-          />
-          <AsyncSelectInput
-            name="deliveryman"
-            label="Entregador"
-            loadOptions={optionsDeliveryman}
-            placeholder="Selecione um entregador"
-          />
-        </Line>
-
-        <Input
-          name="product"
-          type="text"
-          label="Produto"
-          placeholder="Nome do produto"
-          defautl=""
+    <Container id="formDelivery" onSubmit={onSubmit} initialData={initialData}>
+      <Line>
+        <AsyncSelectInput
+          name="recipient"
+          label="Destinatário"
+          loadOptions={optionsRecipient}
+          placeholder="Selecione um destinatário"
         />
-      </Form>
+        <AsyncSelectInput
+          name="deliveryman"
+          label="Entregador"
+          loadOptions={optionsDeliveryman}
+          placeholder="Selecione um entregador"
+        />
+      </Line>
+      <Input
+        name="product"
+        type="text"
+        label="Produto"
+        placeholder="Nome do produto"
+        defautl=""
+      />
     </Container>
   );
 }

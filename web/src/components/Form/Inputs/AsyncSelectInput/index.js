@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import AsyncSelect from 'react-select/async';
 import { useField } from '@unform/core';
 
+import { Container } from './styles';
+
 export default function AsyncSelectInput({
   name,
   label,
@@ -29,7 +31,7 @@ export default function AsyncSelectInput({
   }, [defaultValue]);
 
   return (
-    <div className="asyncSelectContainer">
+    <Container className="asyncSelectContainer">
       {label && <label htmlFor={fieldName}>{label}</label>}
       <AsyncSelect
         id={fieldName}
@@ -44,7 +46,7 @@ export default function AsyncSelectInput({
         {...rest}
       />
       {error && <span>{error}</span>}
-    </div>
+    </Container>
   );
 }
 
