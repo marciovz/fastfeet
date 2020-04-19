@@ -36,23 +36,37 @@ export default function Dashboard({navigation}) {
   const dispatch = useDispatch();
 
   const [filterActive, setFilterActive] = useState('pending');
+  
+  async function loadDeliveries() {
+    setLoading(true);
+    if (profile && profile.id) {
+      const {data} = await api.get(
+        `/deliveryman/${profile.id}/deliveries/${filterActive}`,
+      );
+      setDeliveries(data);
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    dispatch(resetCurrentDeliveryRequest());
-  }, []);
-  
+    navigation.addListener('didFocus', () => {
+      try{
+        loadDeliveries()
+        dispatch(resetCurrentDeliveryRequest());  
+      }catch(err){
+        setDeliveries([]);
+        setLoading(false);
+        console.tron.log(err);
+        Alert.alert(
+          'Falha de comunicação com o servidor',
+          'Não foi possível buscar as informações na base de dados',
+        );  
+      }
+    });
+  },[]);
+
   useEffect(() => {
     try{
-      setLoading(true);
-      async function loadDeliveries() {
-        if (profile && profile.id) {
-          const {data} = await api.get(
-            `/deliveryman/${profile.id}/deliveries/${filterActive}`,
-          );
-          setDeliveries(data);
-          setLoading(false);
-        }
-      }
       loadDeliveries();  
     }catch(err){
       setDeliveries([]);

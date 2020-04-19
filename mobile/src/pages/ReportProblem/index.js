@@ -16,11 +16,11 @@ export default function ReportProblem({navigation}) {
   const [loading, setLoading] = useState(false);  
   
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if(textValue !== ''){
       try {
         setLoading(true);
-        api.post(`/deliveryman/${profile.id}/delivery/${delivery.id}/problems`, {
+        await api.post(`/deliveryman/${profile.id}/delivery/${delivery.id}/problems`, {
           description: textValue,
         });
         setLoading(false);
