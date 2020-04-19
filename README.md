@@ -15,7 +15,7 @@ Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e
 ### Instalação do servidor backend local
 #### 1. Recomendações para preparação do ambiente de avaliação
 
-	Este projeto foi desenvolvido e testado na versão do node 10.16.2, com o gerenciador de dependências yarn 1.22.4, e docker 19.03.8. Recomendamos a instalação dessas ferramentas nestas versões ou superiores;
+Este projeto foi desenvolvido e testado na versão do node 10.16.2, com o gerenciador de dependências yarn 1.22.4, e docker 19.03.8. Recomendamos a instalação dessas ferramentas nestas versões ou superiores;
 
 #### 2. Instalação do banco de dados com Docker
 
@@ -125,7 +125,7 @@ fazendo triagem de encomendas atribuindo a um entregador, e analizando problemas
  $ yarn
 ```
 
-### Iniciar o servidor web
+### Iniciando o servidor web
 #### 1. Iniciar a aplicação Web
 ```bash
  # Rodar o comando para estartar o servidor web
@@ -144,7 +144,7 @@ A versão mobile do projeto Fastfeet é direcionada para entregadores gerenciare
 Com o aplicativo mobile o entregador terá acesso a sua lista de entregas finalizadas e pendentes, ver detalhes de cada encomenda, poderá visualizar e adicionar problemas decorrentes na entrega, e finalizar a entrega adicionando uma imagem da assinatura do destinatário.
 
 ### Instalando o projeto Mobile (Android)
-  ###### Obs.: O app fastfeet foi desenvolvido e testado apenas para a plataforma ANDROID.
+  ###### Obs.: O app fastfeet foi desenvolvido e testado somente na plataforma ANDROID.
 
 Acesse a pasta do projeto mobile
 ```bash
@@ -171,9 +171,9 @@ Para instalação e configuração do emulador e outros pacotes necessários, re
  # instalando as dependências do projeto
  $ yarn
 ```
-```javascript
  
  Abra o arquivo de configuração hostBackend.js localizado na pasta /src/config/hostBackend.js e confirme as seguintes informações:
+```javascript
  {
 	protocol:  'http',								// protocolo utilizado
 	host:  '192.168.1.101',						// endereço ip do servidor backend (colocar o ip)
