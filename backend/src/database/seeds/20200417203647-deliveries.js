@@ -4,7 +4,6 @@ module.exports = {
       'deliveries',
       [
         {
-          id: 1,
           recipient_id: 1,
           deliveryman_id: 1,
           signature_id: 1,
@@ -16,7 +15,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 2,
           recipient_id: 2,
           deliveryman_id: 1,
           signature_id: null,
@@ -28,7 +26,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 3,
           recipient_id: 3,
           deliveryman_id: 1,
           signature_id: null,
@@ -40,7 +37,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 4,
           recipient_id: 4,
           deliveryman_id: 1,
           signature_id: null,
@@ -52,7 +48,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 5,
           recipient_id: 5,
           deliveryman_id: 2,
           signature_id: null,
@@ -64,7 +59,6 @@ module.exports = {
           updated_at: new Date(),
         }, 
         {
-          id: 6,
           recipient_id: 6,
           deliveryman_id: 2,
           signature_id: null,
@@ -76,7 +70,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 7,
           recipient_id: 7,
           deliveryman_id: 3,
           signature_id: null,
@@ -88,7 +81,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 8,
           recipient_id: 8,
           deliveryman_id: 3,
           signature_id: null,
@@ -100,7 +92,6 @@ module.exports = {
           updated_at: new Date(),
         }, 
         {
-          id: 9,
           recipient_id: 1,
           deliveryman_id: 1,
           signature_id: null,

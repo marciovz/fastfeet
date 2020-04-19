@@ -4,7 +4,6 @@ module.exports = {
       'recipients',
       [
         {
-          id: 1,
           name: 'Lidia Nogueira',
           street: 'Rua Desembargador Filomeno',
           number: '125',
@@ -16,7 +15,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 2,
           name: 'Maria Antônia Pereira',
           street: 'Rua Pedro Schimit',
           number: '250',
@@ -28,7 +26,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 3,
           name: 'Rita Caetana de Braga',
           street: 'Av. Renato da Silva',
           number: '575',
@@ -40,7 +37,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 4,
           name: 'Marcela Vieira',
           street: 'Rua Coronel Silva',
           number: '389',
@@ -52,7 +48,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 5,
           name: 'Tatiana Marques Dantas',
           street: 'Rua Teraza lopes',
           number: '227',
@@ -64,7 +59,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 6,
           name: 'Janaína Mendes Silva',
           street: 'Av. Coordenardor Valença',
           number: '245',
@@ -76,7 +70,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 7,
           name: 'Mariana Marques Melo',
           street: 'Rua Olídio Martins',
           number: '765',
@@ -88,7 +81,6 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          id: 8,
           name: 'Debora Oliveira',
           street: 'Av. Silva Jarfin',
           number: '1430',
