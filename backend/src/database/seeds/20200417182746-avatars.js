@@ -5,14 +5,14 @@ module.exports = {
       [
         {
           id: 1,
-          name: 'tigre.jpg',
+          name: 'person1.jpg',
           path: '12345678.jpg',
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 2,
-          name: 'panda.jpg',
+          name: 'person2.jpg',
           path: '23456789.jpg',
           created_at: new Date(),
           updated_at: new Date(),

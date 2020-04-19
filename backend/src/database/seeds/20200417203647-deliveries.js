@@ -32,7 +32,7 @@ module.exports = {
           recipient_id: 3,
           deliveryman_id: 1,
           signature_id: null,
-          product: 'Jaqueta de Couro',
+          product: 'Jaqueta Motoqueiro',
           canceled_at: null,
           start_date: new Date(),
           end_date: null,
