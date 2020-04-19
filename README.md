@@ -2,24 +2,27 @@
 
 **Aplicativo para gerenciamento de entregas de encomendas para transportadoras**
 
-Com o Fastfeet o administrador pode cadastrar entregadores, cadastrar e distribuir encomendas aos entregadores, gerenciar as datas de retiradas e entregas finalizadas, verificar problemas e fazer cancelamento das entregas.
+Com o Fastfeet o administrador pode cadastrar entregadores, cadastrar e distribuir encomendas aos entregadores, gerenciar as encomendas retiradas e entregas finalizadas, verificar problemas de entregas, bem como fazer cancelamentos.
 
 A aplicação utiliza as tecnologias NodeJS no back-end, ReactJS no front-end e React-Native no mobile, e faz parte do desafio final para certificação do curso Bootcamp da Rocketseat.
 
 Para testar o sistema Fastfeet, é necessário a instalação do servidor backend, web e o mobile.
 
+
 ## :gear: Back-end
 
-Desenvolvido com a tecnologia NodeJS, é responsável por gerenciar os acessos e responder todas as requisições da aplicação. Utiliza tecnologia JWT nas autenticações de usuários, banco postgree para armazenamento dos dados da entrega, dos entregadores, dos destinatários entre outros, e o banco Redis para armazenamento de dados da fila de envio de emails.
+Desenvolvido com a tecnologia NodeJS, o backend é responsável por gerenciar os acessos a aplicação e disponibilizar os dados requisitados pela aplicação. Utiliza tecnologia JWT nas autenticações de usuários, banco postgree para armazenamento dos dados da entrega, dos entregadores, dos destinatários entre outros, e o banco Redis para armazenamento de dados da fila de envio de emails.
 
-### Instalação do servidor backend local
-#### 1. Recomendações para preparação do ambiente de avaliação
+
+### Instalando do servidor backend local
+#### 1. Recomendações para preparação do ambiente local
 
 Este projeto foi desenvolvido e testado na versão do node 10.16.2, com o gerenciador de dependências yarn 1.22.4, e docker 19.03.8. Recomendamos a instalação dessas ferramentas nestas versões ou superiores;
 
-#### 2. Instalação do banco de dados com Docker
+#### 2. Instalando o banco de dados com Docker
 
-O projeto fastfeet utiliza o banco de dados Postgree para armazenamento dos dados da aplicação e o Redis para armazenamendo da fila de envio de emails. 
+O projeto fastfeet utiliza o banco de dados Postgree para armazenamento dos dados da aplicação e o Redis para armazenamendo da fila de envio de emails.
+Para os procedimentos abaixo, vocễ precisa ja ter o docker instalado.
 ```bash
  # Instalação do Redis com o docker
  $ docker run --name fastfeetRedis -p 6379:6379 -d -t redis:alpine
@@ -45,9 +48,9 @@ Clonar a pasta do projeto em sua máquina local e instalar as dependências.
 
 #### 4. Arquivos de configuração
 
-Criar um arquivo .env na raiz do projeto backend, com o conteúdo o arquivo .env.exemplo, e
+Criar um arquivo .env na raiz do projeto backend, com o mesmo conteúdo do arquivo .env.exemplo, e
 preenche as variáveis com suas respectivas informações.
-Você precisa fazer uma conta no site do mailtrap.io e acionar suas credenciais nas configurações abaixo.
+Você precisa fazer uma conta no site do mailtrap.io e adicionar suas credenciais nas configurações.
    
 ```javascript
  //Código para criptografia jwt
@@ -70,18 +73,8 @@ Você precisa fazer uma conta no site do mailtrap.io e acionar suas credenciais 
  MAIL_PASS=sua_senha_de_acesso_ao_mailtrap
 ```
 
-#### 5. Criando e populando a Base de dados para teste
-```bash
- # Rodar a migração
- $ yarn sequelize db:migrate
-
- # Rodar o seeds
- $ yarn sequelize db:seed:all
-```
-
-### Iniciamdo o servidor backend
-#### 1. Iniciar os bancos de dados e o servidor da aplicação
-Verifique se os bancos fastfeetdb e o fastfeetRedis estejam rodando com o comando 
+#### 5. Iniciar os bancos de dados
+Verifique se o banco de dados fastfeetdb e o fastfeetRedis já estão rodando
 ```bash
  # Verificando bancos ativos
  $ docker ps
@@ -95,7 +88,20 @@ Caso os bancos não estejam ativos, reinicie eles com os comandos abaixo:
  # Iniciando o banco Redis
  docker start fastfeetRedis
  ```
-Agora inicie os servidores da aplicação
+
+#### 6. Criando e populando a Base de dados para teste
+```bash
+ # Rodar a migração
+ $ yarn sequelize db:migrate
+
+ # Rodar o seeds
+ $ yarn sequelize db:seed:all
+```
+
+
+### Iniciando o servidor backend
+#### 1. Iniciar o servidor da aplicação
+Inicie os servidores da aplicação
 ```bash
  # Iniciando o servidor da aplicação
  yarn dev
@@ -112,7 +118,7 @@ Pronto, o servidor backend está configurado e rodando.
 
 A versão Web do projeto é direcionada para administradores da distribuidora.
 Nessa versão, os administradores terão acesso a gestão de entregadores, destinatários e encomendas,
-fazendo triagem de encomendas atribuindo a um entregador, e analizando problemas decorridos nas entregas.
+fazendo triagem de encomendas, atribuindo a um entregador, e analizando problemas decorridos nas entregas.
 
 ### Instalando o servidor web localmente
 #### 1. Instalar das dependências do projeto Web
@@ -143,6 +149,7 @@ Adiciona as credenciais do adminstrador para acessar o sistema.
 A versão mobile do projeto Fastfeet é direcionada para entregadores gerenciarem suas encomendas.
 Com o aplicativo mobile o entregador terá acesso a sua lista de entregas finalizadas e pendentes, ver detalhes de cada encomenda, poderá visualizar e adicionar problemas decorrentes na entrega, e finalizar a entrega adicionando uma imagem da assinatura do destinatário.
 
+
 ### Instalando o projeto Mobile (Android)
   ###### Obs.: O app fastfeet foi desenvolvido e testado somente na plataforma ANDROID.
 
@@ -162,17 +169,17 @@ $ react-native-cli -v
 ```
 
 #### 2. Configuração do emulador
-Este aplicativo foi desenvolvido utilizando como emulador um celular Android e as configurações para Linux Mint 19.
+Este aplicativo foi desenvolvido utilizando como emulador um celular Android conectado via usb a uma máquina com sistema Linux Mint 19.
 Para instalação e configuração do emulador e outros pacotes necessários, recomenda-se seguir os passos descrito no tutorial da Rocketseat, no link https://react-native.rocketseat.dev/, de acordo com as características de seu ambiente.
 
 
-#### 3. Configuração do aplicativo
+#### 3. Configuração do aplicativo mobile
 ```bash
  # instalando as dependências do projeto
  $ yarn
 ```
  
- Abra o arquivo de configuração hostBackend.js localizado na pasta /src/config/hostBackend.js e confirme as seguintes informações:
+ Abrir o arquivo de configuração hostBackend.js localizado na pasta /src/config/hostBackend.js e altere as seguintes informações:
 ```javascript
  {
 	protocol:  'http',								// protocolo utilizado
@@ -183,7 +190,7 @@ Para instalação e configuração do emulador e outros pacotes necessários, re
 
 ### Emulando o aplicativo mobile
 
-Certifique-se que o emulador ou o celular esteja devidamente conectado.
+Certifique-se de que o emulador esteja abaerto ou o celular esteja conectado ao pc.
 
 ### 1. Criando o Bundle da aplicação
 ```bash
@@ -196,4 +203,4 @@ Certifique-se que o emulador ou o celular esteja devidamente conectado.
  $ react-native start 
 ```
 Pronto, o aplicativo estará rodando na tela do emulador.
-Você poderá acessar o aplicativo digitando o id de um entregador, tente o id 1 do entregador já cadastrado.
+Você poderá acessar o aplicativo digitando o id de um entregador cadastrado, por exemplo o entregador de id 1.
