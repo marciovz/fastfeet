@@ -43,7 +43,6 @@ export default function Delivery() {
         });
 
         const data = response.data.map(item => {
-          console.tron.log(item);
           return {
             ...item,
             status: getStatus(item.start_date, item.end_date, item.canceled_at),

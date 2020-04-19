@@ -12,7 +12,7 @@ export const Image = styled.img`
   height: ${props => `${props.size}px`};
   border-radius: ${props => `${props.size / 2}px`};
   background: #ffffff;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   background-repeat: no-repeat;
 `;
