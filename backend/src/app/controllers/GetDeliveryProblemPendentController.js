@@ -16,6 +16,7 @@ class GetDeliveryProblemPendentController {
           as: 'delivery',
           where: {
             canceled_at: null,
+            end_date: null,
           },
           include: [
             {
