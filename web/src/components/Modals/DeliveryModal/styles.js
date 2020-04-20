@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   position: fixed;
@@ -7,13 +8,14 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 20;
+  z-index: 20px;
 
   display: ${props => (props.showModal ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
 
   > div {
+    position: relative;
     width: 450px;
     min-height: 350px;
     padding: 20px;
@@ -56,5 +58,46 @@ export const Container = styled.div`
       margin: 5px auto;
       max-height: 100px;
     }
+  }
+`;
+
+export const ButtonClose = styled.button`
+position: absolute;
+top: 10px;
+right: 10px;
+padding: 5px 10px;
+
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+color: #000000;
+background: #ffffff;
+border: none;
+border-radius: 4px;
+transition: 0.2s;
+
+&:hover {
+  background: ${darken(0.1, '#ffffff')};
+}
+
+`;
+export const ButtonTakeDelivery = styled.button`
+  margin: 10px 0;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #2CA42B;
+  background: #cccccc;
+  border: none;
+  border-radius: 4px;
+  transition: 0.2s;
+  
+  &:hover {
+    background: ${darken(0.1, '#cccccc')};
   }
 `;

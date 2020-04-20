@@ -47,11 +47,6 @@ routes.get(
   '/deliveryman/:deliverymanId/delivery/:deliveryId/findOne',
   GetDeliveryByDeliveryIdController.show
 );
-/** rota para retirada de encomendas */
-routes.put(
-  '/deliveryman/:id/delivery/:delivery_id/takeDelivery',
-  TakeDeliveryController.update
-);
 
 /** rota para finalizar uma entrega */
 routes.put(
@@ -107,6 +102,13 @@ routes.get('/deliveries/:id', DeliveryController.show);
 routes.post('/deliveries', DeliveryController.store);
 routes.put('/deliveries/:id', DeliveryController.update);
 routes.delete('/deliveries/:id', DeliveryController.delete);
+
+/** rota para retirada de encomendas */
+routes.put(
+  '/deliveryman/:deliveryman_id/delivery/:delivery_id/takeDelivery',
+  TakeDeliveryController.update
+);
+
 
 routes.post('/avatars', uploadAvatar.single('file'), AvatarController.store);
 

@@ -26,13 +26,11 @@ class TakeDeliveryController {
       isBefore(timeNow, startTimeDelivery) ||
       isAfter(timeNow, endTimeDelivery)
     ) {
-      return res
-        .status(400)
-        .json({ error: 'Delivery allowed from 8:00 to 18:00' });
+      return res.status(400).json({ error: 'Delivery allowed from 8:00 to 18:00' });
     }
 
     /** if exist deliveryman */
-    const deliveryman = await Deliveryman.findByPk(req.params.id);
+    const deliveryman = await Deliveryman.findByPk(req.params.deliveryman_id);
     if (!deliveryman) {
       return res.status(401).json({ error: 'Deliveryman not found!' });
     }

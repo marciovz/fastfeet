@@ -32,30 +32,31 @@ export default function Delivery() {
   });
   const gridDelivery = "1fr 3fr 4fr 3fr 2fr 2fr 1fr";
   // "1fr 2fr 3fr 2fr 1fr 2fr 1fr"
+  
+  async function loadDeliveries() {
+    try {
+      const response = await api.get('deliveries', {
+        params: {
+          q: productFilter,
+        },
+      });
+
+      const data = response.data.map(item => {
+        return {
+          ...item,
+          status: getStatus(item.start_date, item.end_date, item.canceled_at),
+        };
+      });
+
+      setDeliveries(data);
+    } catch (err) {      
+      toast.error("Erro ao acessar os dados no servidor");
+    }
+  }
 
   useEffect(() => {
-    async function loadDeliveries() {
-      try {
-        const response = await api.get('deliveries', {
-          params: {
-            q: productFilter,
-          },
-        });
-
-        const data = response.data.map(item => {
-          return {
-            ...item,
-            status: getStatus(item.start_date, item.end_date, item.canceled_at),
-          };
-        });
-
-        setDeliveries(data);
-      } catch (err) {      
-        toast.error("Erro ao acessar os dados no servidor");
-      }
-    }
     loadDeliveries();
-  }, [productFilter]);
+  }, [productFilter]); // eslint-disable-line
 
   function getStatus(start_date, end_date, canceled) {
     if (canceled) return 'CANCELADA';
@@ -86,6 +87,18 @@ export default function Delivery() {
 
   function handleRemoveModal() {
     setDeliveryModal({ show: false, delivery: null });
+  }
+
+  async function handleTakeDelivery(delivery) {
+    try{
+      const response = await api.put(`deliveryman/${delivery.deliveryman.id}/delivery/${delivery.id}/takeDelivery`);
+      if(!response)
+        toast.error("Não foi possíve registar a retirada, Verifique o horário ou a quantidade de entragas!");
+      loadDeliveries();
+    }catch(err){
+      console.tron.log(err);
+      toast.error("Não foi possíve registar a retirada, Verifique o horário ou a quantidade de entragas!");
+    }
   }
 
   return (
@@ -145,7 +158,8 @@ export default function Delivery() {
       <DeliveryModal
         show={deliveryModal.show}
         selectedDelivery={deliveryModal.delivery}
-        onClick={handleRemoveModal}
+        onClickExit={handleRemoveModal}
+        onClickTakeDelivery={handleTakeDelivery}
       />
     </PageListContainer>
   );

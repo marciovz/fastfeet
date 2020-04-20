@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+// import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
+// import api from '~/services/api';
 import formatDate from '~/util/formatDate';
 
-import { Container } from './styles';
+import { Container, ButtonClose, ButtonTakeDelivery } from './styles';
 
-export default function DeliveryModal({ show, selectedDelivery, onClick }) {
+export default function DeliveryModal({ show, selectedDelivery, onClickExit, onClickTakeDelivery }) {
   const [showModal, setShowModal] = useState(false);
   const [delivery, setDelivery] = useState({ delivery: null });
 
@@ -20,10 +22,16 @@ export default function DeliveryModal({ show, selectedDelivery, onClick }) {
     }
   }, [show, selectedDelivery]);
 
+  function handleTakeDelivery() {
+    onClickTakeDelivery(delivery);
+    onClickExit();
+  }
+
   return (
-    <Container onClick={onClick} showModal={showModal}>
+    <Container showModal={showModal}>
       <div>
         <div>
+          <ButtonClose onClick={onClickExit}>X</ButtonClose>
           <h1>Informações da encomenda</h1>
           {delivery && delivery.recipient && (
             <>
@@ -42,7 +50,7 @@ export default function DeliveryModal({ show, selectedDelivery, onClick }) {
 
         <div>
           <h2>Datas</h2>
-          {delivery && (
+          {delivery && delivery.start_date ? (
             <>
               <h3>
                 Retirada: <span>{delivery.formatedStartDate}</span>
@@ -51,6 +59,8 @@ export default function DeliveryModal({ show, selectedDelivery, onClick }) {
                 Entrega: <span>{delivery.formatedEndDate}</span>
               </h3>
             </>
+          ) : (
+            <ButtonTakeDelivery onClick={handleTakeDelivery}>Entregar</ButtonTakeDelivery>            
           )}
         </div>
         <h2>Assinatura do destinatário</h2>
