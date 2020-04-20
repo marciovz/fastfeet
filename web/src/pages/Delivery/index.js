@@ -31,7 +31,6 @@ export default function Delivery() {
     delivery: null,
   });
   const gridDelivery = "1fr 3fr 4fr 3fr 2fr 2fr 1fr";
-  // "1fr 2fr 3fr 2fr 1fr 2fr 1fr"
   
   async function loadDeliveries() {
     try {

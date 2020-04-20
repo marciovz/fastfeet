@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
-// import api from '~/services/api';
 import formatDate from '~/util/formatDate';
 
 import { Container, ButtonClose, ButtonTakeDelivery } from './styles';
