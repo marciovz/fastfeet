@@ -60,7 +60,7 @@ export default function DeliveryModal({ show, selectedDelivery, onClickExit, onC
               </h3>
             </>
           ) : (
-            <ButtonTakeDelivery onClick={handleTakeDelivery}>Entregar</ButtonTakeDelivery>            
+            <ButtonTakeDelivery onClick={handleTakeDelivery}>Retirar</ButtonTakeDelivery>            
           )}
         </div>
         <h2>Assinatura do destinatário</h2>
